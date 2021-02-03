@@ -1,0 +1,14 @@
+D:\работа\TestApp\TestApp\TestApp\obj\Debug\TestApp.csprojAssemblyReference.cache
+D:\работа\TestApp\TestApp\TestApp\obj\Debug\TestApp.Properties.Resources.resources
+D:\работа\TestApp\TestApp\TestApp\obj\Debug\TestApp.csproj.GenerateResource.cache
+D:\работа\TestApp\TestApp\TestApp\obj\Debug\TestApp.csproj.CoreCompileInputs.cache
+D:\работа\TestApp\TestApp\TestApp\bin\Debug\TestApp.exe.config
+D:\работа\TestApp\TestApp\TestApp\bin\Debug\TestApp.exe
+D:\работа\TestApp\TestApp\TestApp\bin\Debug\TestApp.pdb
+D:\работа\TestApp\TestApp\TestApp\bin\Debug\EntityFramework.dll
+D:\работа\TestApp\TestApp\TestApp\bin\Debug\EntityFramework.SqlServer.dll
+D:\работа\TestApp\TestApp\TestApp\bin\Debug\EntityFramework.xml
+D:\работа\TestApp\TestApp\TestApp\bin\Debug\EntityFramework.SqlServer.xml
+D:\работа\TestApp\TestApp\TestApp\obj\Debug\TestApp.csproj.CopyComplete
+D:\работа\TestApp\TestApp\TestApp\obj\Debug\TestApp.exe
+D:\работа\TestApp\TestApp\TestApp\obj\Debug\TestApp.pdb
