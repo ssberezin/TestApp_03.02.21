@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestApp.Model;
 
 namespace TestApp
 {
@@ -15,6 +16,13 @@ namespace TestApp
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            DBConteiner db = new DBConteiner();
+            db.SubDivisions.Load();
+
         }
     }
 }

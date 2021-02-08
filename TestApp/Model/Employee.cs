@@ -29,7 +29,7 @@ namespace TestApp.Model
             this.EmployeeSubDivisions = new ObservableCollection<EmployeeSubDivs>();
         }
 
-        public int EmpId { get; set; }
+        public int Id { get; set; }
         [Column("TabNumber", TypeName = "ntext")]
         [MaxLength(4)]
         public string TabNumber { get; set; }
@@ -67,7 +67,7 @@ namespace TestApp.Model
         public DateTime FireDate { get; set; }
 
 
-        [Column("BirthPalce", TypeName = "ntext")]
+        [Column("FireReason", TypeName = "ntext")]
         [MaxLength(500)]
         public string FireReason { get; set; }
 

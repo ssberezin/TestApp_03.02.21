@@ -18,7 +18,7 @@ namespace TestApp.Model
             this.Employees = new ObservableCollection<Employee>();
 
         }
-        public int SubDivId { get; set; }
+        public int Id { get; set; }
 
         [Column("SubDivName", TypeName = "ntext")]
         [MaxLength(500)]
@@ -35,7 +35,7 @@ namespace TestApp.Model
         public DateTime CollapsDate { get; set; }
 
         public virtual ObservableCollection<Employee> Employees { get; set; }
-       // public virtual EmployeeSubDivs EmployeeSubDiv { get; set; }
+        public virtual EmployeeSubDivs EmployeeSubDiv { get; set; }
 
     }
 }
