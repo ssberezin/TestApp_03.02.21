@@ -28,8 +28,12 @@ namespace TestApp.Model
 
             this.EmployeeSubDivisions = new ObservableCollection<EmployeeSubDivs>();
         }
+        //[Key]
+        //public int Employee_Id { get; set; }
 
+        
         public int Id { get; set; }
+
         [Column("TabNumber", TypeName = "ntext")]
         [MaxLength(4)]
         public string TabNumber { get; set; }

@@ -15,6 +15,10 @@ namespace TestApp.Model
             Position = "";
             SubDivisions = new ObservableCollection<SubDivision>();
         }
+        //[Key]
+        //public int EmployeeSubDivs_Id { get; set; }
+
+        
         public int Id { get; set; }
 
         [Column(TypeName = "datetime2")]
