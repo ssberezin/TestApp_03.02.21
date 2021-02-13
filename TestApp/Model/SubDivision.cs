@@ -13,8 +13,7 @@ namespace TestApp.Model
             this.CollapsDate = new DateTime(2050, 1, 1);
             this.CreateDate = DateTime.Now;
             this.SubDivName = "";
-        
-
+            this.ParentId = 0;
             this.Employees = new ObservableCollection<Employee>();
 
         }

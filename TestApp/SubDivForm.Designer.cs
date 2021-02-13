@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.ParentSubDiv_comboBox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SubDivName_txtBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.SaveSubDivBtn = new System.Windows.Forms.Button();
             this.CancelSubDivBtn = new System.Windows.Forms.Button();
+            this.SaveSubDivBtn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -57,11 +57,29 @@
             this.panel1.Size = new System.Drawing.Size(776, 41);
             this.panel1.TabIndex = 4;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(408, 9);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(110, 21);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "Закрылось?";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(524, 9);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(249, 22);
+            this.dateTimePicker2.TabIndex = 9;
+            // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(136, 10);
+            this.dateTimePicker1.Location = new System.Drawing.Point(126, 10);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(243, 22);
             this.dateTimePicker1.TabIndex = 7;
             // 
             // label3
@@ -72,23 +90,6 @@
             this.label3.Size = new System.Drawing.Size(108, 17);
             this.label3.TabIndex = 6;
             this.label3.Text = "Дата создания";
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(558, 10);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker2.TabIndex = 9;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(421, 11);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(131, 21);
-            this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Дата закрытия";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
@@ -108,6 +109,7 @@
             this.ParentSubDiv_comboBox.Name = "ParentSubDiv_comboBox";
             this.ParentSubDiv_comboBox.Size = new System.Drawing.Size(557, 24);
             this.ParentSubDiv_comboBox.TabIndex = 7;
+            this.ParentSubDiv_comboBox.SelectedIndexChanged += new System.EventHandler(this.ParentSubDiv_comboBox_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -143,16 +145,6 @@
             this.panel3.Size = new System.Drawing.Size(781, 48);
             this.panel3.TabIndex = 7;
             // 
-            // SaveSubDivBtn
-            // 
-            this.SaveSubDivBtn.BackColor = System.Drawing.Color.YellowGreen;
-            this.SaveSubDivBtn.Location = new System.Drawing.Point(3, 3);
-            this.SaveSubDivBtn.Name = "SaveSubDivBtn";
-            this.SaveSubDivBtn.Size = new System.Drawing.Size(252, 42);
-            this.SaveSubDivBtn.TabIndex = 8;
-            this.SaveSubDivBtn.Text = "Сохранить";
-            this.SaveSubDivBtn.UseVisualStyleBackColor = false;
-            // 
             // CancelSubDivBtn
             // 
             this.CancelSubDivBtn.BackColor = System.Drawing.Color.Red;
@@ -162,6 +154,18 @@
             this.CancelSubDivBtn.TabIndex = 9;
             this.CancelSubDivBtn.Text = "Отменить";
             this.CancelSubDivBtn.UseVisualStyleBackColor = false;
+            this.CancelSubDivBtn.Click += new System.EventHandler(this.CancelSubDivBtn_Click);
+            // 
+            // SaveSubDivBtn
+            // 
+            this.SaveSubDivBtn.BackColor = System.Drawing.Color.YellowGreen;
+            this.SaveSubDivBtn.Location = new System.Drawing.Point(3, 3);
+            this.SaveSubDivBtn.Name = "SaveSubDivBtn";
+            this.SaveSubDivBtn.Size = new System.Drawing.Size(252, 42);
+            this.SaveSubDivBtn.TabIndex = 8;
+            this.SaveSubDivBtn.Text = "Сохранить";
+            this.SaveSubDivBtn.UseVisualStyleBackColor = false;
+            this.SaveSubDivBtn.Click += new System.EventHandler(this.SaveSubDivBtn_Click);
             // 
             // SubDivForm
             // 

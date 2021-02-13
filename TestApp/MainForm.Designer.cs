@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.SubDivisionsPanel = new System.Windows.Forms.Panel();
+            this.SubDivEditBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.EmployeesPanel = new System.Windows.Forms.Panel();
+            this.EmployeeEditBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.SubDivEditBtn = new System.Windows.Forms.Button();
-            this.EmployeeEditBtn = new System.Windows.Forms.Button();
             this.SubDivisionsPanel.SuspendLayout();
             this.EmployeesPanel.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +55,18 @@
             this.SubDivisionsPanel.Name = "SubDivisionsPanel";
             this.SubDivisionsPanel.Size = new System.Drawing.Size(483, 668);
             this.SubDivisionsPanel.TabIndex = 0;
+            // 
+            // SubDivEditBtn
+            // 
+            this.SubDivEditBtn.BackColor = System.Drawing.SystemColors.Info;
+            this.SubDivEditBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.SubDivEditBtn.Location = new System.Drawing.Point(172, 624);
+            this.SubDivEditBtn.Name = "SubDivEditBtn";
+            this.SubDivEditBtn.Size = new System.Drawing.Size(151, 41);
+            this.SubDivEditBtn.TabIndex = 4;
+            this.SubDivEditBtn.Text = "Редактировать";
+            this.SubDivEditBtn.UseVisualStyleBackColor = false;
+            this.SubDivEditBtn.Click += new System.EventHandler(this.SubDivEditBtn_Click);
             // 
             // label1
             // 
@@ -110,6 +122,17 @@
             this.EmployeesPanel.Size = new System.Drawing.Size(415, 668);
             this.EmployeesPanel.TabIndex = 1;
             // 
+            // EmployeeEditBtn
+            // 
+            this.EmployeeEditBtn.BackColor = System.Drawing.SystemColors.Info;
+            this.EmployeeEditBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.EmployeeEditBtn.Location = new System.Drawing.Point(141, 624);
+            this.EmployeeEditBtn.Name = "EmployeeEditBtn";
+            this.EmployeeEditBtn.Size = new System.Drawing.Size(134, 41);
+            this.EmployeeEditBtn.TabIndex = 5;
+            this.EmployeeEditBtn.Text = "Редактировать";
+            this.EmployeeEditBtn.UseVisualStyleBackColor = false;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -151,28 +174,6 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Добавить";
             this.button4.UseVisualStyleBackColor = false;
-            // 
-            // SubDivEditBtn
-            // 
-            this.SubDivEditBtn.BackColor = System.Drawing.SystemColors.Info;
-            this.SubDivEditBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SubDivEditBtn.Location = new System.Drawing.Point(172, 624);
-            this.SubDivEditBtn.Name = "SubDivEditBtn";
-            this.SubDivEditBtn.Size = new System.Drawing.Size(151, 41);
-            this.SubDivEditBtn.TabIndex = 4;
-            this.SubDivEditBtn.Text = "Редактировать";
-            this.SubDivEditBtn.UseVisualStyleBackColor = false;
-            // 
-            // EmployeeEditBtn
-            // 
-            this.EmployeeEditBtn.BackColor = System.Drawing.SystemColors.Info;
-            this.EmployeeEditBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.EmployeeEditBtn.Location = new System.Drawing.Point(141, 624);
-            this.EmployeeEditBtn.Name = "EmployeeEditBtn";
-            this.EmployeeEditBtn.Size = new System.Drawing.Size(134, 41);
-            this.EmployeeEditBtn.TabIndex = 5;
-            this.EmployeeEditBtn.Text = "Редактировать";
-            this.EmployeeEditBtn.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
