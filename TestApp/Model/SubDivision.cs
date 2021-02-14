@@ -10,12 +10,12 @@ namespace TestApp.Model
     {
         public SubDivision()
         {
-            this.CollapsDate = new DateTime(2050, 1, 1);
+            this.CollapsDate = DateTime.Now; 
             this.CreateDate = DateTime.Now;
             this.SubDivName = "";
-            this.ParentId = 0;
+            this.ParentId = 1;
+            this.WorkStatus = true;
             this.Employees = new ObservableCollection<Employee>();
-
         }
         //[Key]
         //public int SubDivision_Id { get; set; }
@@ -28,6 +28,8 @@ namespace TestApp.Model
         public string SubDivName { get; set; }
 
         public int ParentId { get; set; }
+
+        public bool WorkStatus { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime CreateDate { get; set; }

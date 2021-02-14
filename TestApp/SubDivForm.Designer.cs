@@ -41,6 +41,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.CancelSubDivBtn = new System.Windows.Forms.Button();
             this.SaveSubDivBtn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -62,9 +63,9 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(408, 9);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(110, 21);
+            this.checkBox1.Size = new System.Drawing.Size(94, 21);
             this.checkBox1.TabIndex = 10;
-            this.checkBox1.Text = "Закрылось?";
+            this.checkBox1.Text = "Закрыть?";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -138,6 +139,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.CancelSubDivBtn);
             this.panel3.Controls.Add(this.SaveSubDivBtn);
             this.panel3.Location = new System.Drawing.Point(12, 120);
@@ -167,6 +169,15 @@
             this.SaveSubDivBtn.UseVisualStyleBackColor = false;
             this.SaveSubDivBtn.Click += new System.EventHandler(this.SaveSubDivBtn_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(283, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(160, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Статус подразделения";
+            // 
             // SubDivForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -185,6 +196,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -204,5 +216,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button CancelSubDivBtn;
         private System.Windows.Forms.Button SaveSubDivBtn;
+        private System.Windows.Forms.Label label4;
     }
 }

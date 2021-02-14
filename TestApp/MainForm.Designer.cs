@@ -31,7 +31,6 @@
             this.SubDivisionsPanel = new System.Windows.Forms.Panel();
             this.SubDivEditBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.EmployeesPanel = new System.Windows.Forms.Panel();
@@ -48,7 +47,6 @@
             // 
             this.SubDivisionsPanel.Controls.Add(this.SubDivEditBtn);
             this.SubDivisionsPanel.Controls.Add(this.label1);
-            this.SubDivisionsPanel.Controls.Add(this.button2);
             this.SubDivisionsPanel.Controls.Add(this.button1);
             this.SubDivisionsPanel.Controls.Add(this.treeView1);
             this.SubDivisionsPanel.Location = new System.Drawing.Point(12, 12);
@@ -60,7 +58,7 @@
             // 
             this.SubDivEditBtn.BackColor = System.Drawing.SystemColors.Info;
             this.SubDivEditBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SubDivEditBtn.Location = new System.Drawing.Point(172, 624);
+            this.SubDivEditBtn.Location = new System.Drawing.Point(329, 624);
             this.SubDivEditBtn.Name = "SubDivEditBtn";
             this.SubDivEditBtn.Size = new System.Drawing.Size(151, 41);
             this.SubDivEditBtn.TabIndex = 4;
@@ -78,17 +76,6 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Подразделения";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button2.Location = new System.Drawing.Point(329, 624);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 41);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Удалить";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
@@ -199,7 +186,6 @@
         private System.Windows.Forms.Panel SubDivisionsPanel;
         private System.Windows.Forms.Panel EmployeesPanel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label label2;

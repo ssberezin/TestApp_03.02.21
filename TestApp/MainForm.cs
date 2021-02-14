@@ -53,6 +53,23 @@ namespace TestApp
                         db.SaveChanges();
                     }
 
+                    if (db.Employees.Count() == 0)
+                    {
+                        Employee worker1 = new Employee
+                        {
+                            EmpName = "Иван",
+                            EmpSurName= "Петров",
+                            EmpPatronimic = "Эдуардович",
+                            TabNumber = "1254E523OL",
+                            DateBirth = new DateTime (1981,1,10),
+                            BirthPalce = "Украина, г.Киев",
+                            INN = "20587463229"
+                        };
+                        worker1.SubDivision = db.SubDivisions.Where(e => e.Id == 5).FirstOrDefault();
+                        db.Employees.Add(worker1);
+                        db.SaveChanges();
+                    }
+
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -82,7 +99,7 @@ namespace TestApp
         {
            //времянка, пока не научился , как вытащить нужное подразделение из дерева
             DBConteiner db = new DBConteiner();
-            SubDivision sub = db.SubDivisions.Where(ex => ex.Id == 2).FirstOrDefault();
+            SubDivision sub = db.SubDivisions.Where(ex => ex.Id == 4).FirstOrDefault();
             SubDivForm addNewSubDiv = new SubDivForm(sub);
             addNewSubDiv.Show();
         }
