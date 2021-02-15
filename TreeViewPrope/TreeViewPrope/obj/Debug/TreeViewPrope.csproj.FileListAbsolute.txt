@@ -1,0 +1,10 @@
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\bin\Debug\TreeViewPrope.exe.config
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\bin\Debug\TreeViewPrope.exe
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\bin\Debug\TreeViewPrope.pdb
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\obj\Debug\TreeViewPrope.csprojAssemblyReference.cache
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\obj\Debug\TreeViewPrope.Form1.resources
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\obj\Debug\TreeViewPrope.Properties.Resources.resources
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\obj\Debug\TreeViewPrope.csproj.GenerateResource.cache
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\obj\Debug\TreeViewPrope.csproj.CoreCompileInputs.cache
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\obj\Debug\TreeViewPrope.exe
+D:\работа\TestApp\TestApp_03.02.21\TreeViewPrope\TreeViewPrope\obj\Debug\TreeViewPrope.pdb

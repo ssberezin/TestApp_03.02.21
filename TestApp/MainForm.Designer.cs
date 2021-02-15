@@ -36,11 +36,12 @@
             this.EmployeesPanel = new System.Windows.Forms.Panel();
             this.EmployeeEditBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.SubDivisionsPanel.SuspendLayout();
             this.EmployeesPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // SubDivisionsPanel
@@ -96,24 +97,25 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(477, 596);
             this.treeView1.TabIndex = 0;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // EmployeesPanel
             // 
+            this.EmployeesPanel.Controls.Add(this.dataGridView1);
             this.EmployeesPanel.Controls.Add(this.EmployeeEditBtn);
             this.EmployeesPanel.Controls.Add(this.label2);
-            this.EmployeesPanel.Controls.Add(this.listBox1);
             this.EmployeesPanel.Controls.Add(this.button3);
             this.EmployeesPanel.Controls.Add(this.button4);
             this.EmployeesPanel.Location = new System.Drawing.Point(501, 12);
             this.EmployeesPanel.Name = "EmployeesPanel";
-            this.EmployeesPanel.Size = new System.Drawing.Size(415, 668);
+            this.EmployeesPanel.Size = new System.Drawing.Size(893, 668);
             this.EmployeesPanel.TabIndex = 1;
             // 
             // EmployeeEditBtn
             // 
             this.EmployeeEditBtn.BackColor = System.Drawing.SystemColors.Info;
             this.EmployeeEditBtn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.EmployeeEditBtn.Location = new System.Drawing.Point(141, 624);
+            this.EmployeeEditBtn.Location = new System.Drawing.Point(348, 624);
             this.EmployeeEditBtn.Name = "EmployeeEditBtn";
             this.EmployeeEditBtn.Size = new System.Drawing.Size(134, 41);
             this.EmployeeEditBtn.TabIndex = 5;
@@ -131,20 +133,11 @@
             this.label2.Text = "Сотрудники";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(3, 19);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(412, 596);
-            this.listBox1.TabIndex = 5;
-            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.Red;
             this.button3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button3.Location = new System.Drawing.Point(281, 624);
+            this.button3.Location = new System.Drawing.Point(759, 624);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(131, 41);
             this.button3.TabIndex = 4;
@@ -162,14 +155,25 @@
             this.button4.Text = "Добавить";
             this.button4.UseVisualStyleBackColor = false;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 20);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(882, 598);
+            this.dataGridView1.TabIndex = 6;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(921, 681);
+            this.ClientSize = new System.Drawing.Size(1406, 681);
             this.Controls.Add(this.EmployeesPanel);
             this.Controls.Add(this.SubDivisionsPanel);
-            this.MinimumSize = new System.Drawing.Size(939, 728);
+            this.MaximumSize = new System.Drawing.Size(1424, 728);
+            this.MinimumSize = new System.Drawing.Size(1424, 728);
             this.Name = "MainForm";
             this.Text = "Подразделения и сотрудники";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -177,6 +181,7 @@
             this.SubDivisionsPanel.PerformLayout();
             this.EmployeesPanel.ResumeLayout(false);
             this.EmployeesPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -189,11 +194,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button SubDivEditBtn;
         private System.Windows.Forms.Button EmployeeEditBtn;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,12 @@ namespace TestApp
         public MainForm()
         {
             InitializeComponent();
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
         }
 
         List<SubDivision> SubDivRecords;
+        SubDivision SelectedSubDiv { get; set; }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -117,30 +121,90 @@ namespace TestApp
                         db.SaveChanges();                       
                     }
 
-                    //ниже - полная дичь. тут
-                    //https://www.cyberforum.ru/asp-net/thread634911.html
-                    //вроде норм. Над будет перенять
+                    SubDivRecords = db.SubDivisions.ToList();
+                    SubDivision tmp = db.SubDivisions.Where(e => e.Id == 1).FirstOrDefault();
+                    SubDivRecords.Remove(tmp);
+                    PopulateTreeView(1, null);
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (OverflowException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.Entity.Core.EntityException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }                  
+        }
 
-                    //parent subdivisions list
-                    List<SubDivision> ParentSubdivs = db.SubDivisions.Where(e => e.ParentId == 1).ToList();
-                    //children subdivisions list
-                    SubDivRecords = db.SubDivisions.Where(e => e.ParentId != 1).ToList();
+        //has taken from here 
+        //https://blogs.msmvps.com/deborahk/populating-a-treeview-control-from-a-list/
+        private void PopulateTreeView(int parentId, TreeNode parentNode)
+        {
+            var filteredItems = SubDivRecords.Where(item =>
+                                        item.ParentId == parentId);
 
-                    treeView1.Nodes.Clear();
-                    SubDivision no = ParentSubdivs.Where(e => e.SubDivName == "Нет родительского подразделения").FirstOrDefault();
-                    ParentSubdivs.Remove(no);
-                    foreach (SubDivision parent in ParentSubdivs)
-                    {
-                        
-                        TreeNode masterNode = new TreeNode(parent.SubDivName.ToString());
-                        treeView1.Nodes.Add(masterNode);
+            TreeNode childNode;
+            foreach (var i in filteredItems.ToList())
+            {
+                if (parentNode == null)
+                {
+                    childNode = treeView1.Nodes.Add(i.SubDivName);
+                    childNode.Tag = i.Id;
+                }
+                else
+                {
+                    childNode = parentNode.Nodes.Add(i.SubDivName);
+                    childNode.Tag = i.Id;
+                }
 
-                        foreach (SubDivision child in SubDivRecords)
-                        {
-                            if (child.ParentId == parent.Id)
-                                masterNode.Nodes.Add(new TreeNode(child.SubDivName.ToString()));
-                        }
-                    }
+                PopulateTreeView(i.Id, childNode);
+            }
+        }
+
+
+        private void SubDivEditBtn_Click(object sender, EventArgs e)
+        {
+            //времянка, пока не научился , как вытащить нужное подразделение из дерева
+            // DBConteiner db = new DBConteiner();
+            //SubDivision sub = db.SubDivisions.Where(ex => ex.Id == 4).FirstOrDefault();
+            if (SelectedSubDiv == null)
+                MessageBox.Show("Нужно выбрать подразделение");
+            else
+            {
+                SubDivForm addNewSubDiv = new SubDivForm(SelectedSubDiv);
+                addNewSubDiv.Show();
+            }
+            
+        }
+
+        
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            int Id = (int)treeView1.SelectedNode.Tag;
+            GetSelectedSubDiv(Id);
+            GetEmployees(Id);
+        }
+
+        private void GetSelectedSubDiv(int Id)
+        {
+            using (DBConteiner db = new DBConteiner())
+            {
+                try
+                {
+                    SelectedSubDiv = db.SubDivisions.Where(item => item.Id == Id).FirstOrDefault();
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -163,16 +227,47 @@ namespace TestApp
                     MessageBox.Show(ex.Message);
                 }
             }
-
         }
 
-        private void SubDivEditBtn_Click(object sender, EventArgs e)
+        private void GetEmployees(int Id)
         {
-           //времянка, пока не научился , как вытащить нужное подразделение из дерева
-            DBConteiner db = new DBConteiner();
-            SubDivision sub = db.SubDivisions.Where(ex => ex.Id == 4).FirstOrDefault();
-            SubDivForm addNewSubDiv = new SubDivForm(sub);
-            addNewSubDiv.Show();
+            using (DBConteiner db = new DBConteiner())
+            {
+                try
+                {
+                    dataGridView1.DataSource = null;
+                    List<Employee> empList = db.Employees.Where(e => e.SubDivision.Id == Id).ToList();
+                    var source = new BindingSource(empList,null);
+                    dataGridView1.DataSource = source;
+                    dataGridView1.Columns["Id"].Visible = false;
+                    //dataGridView1.Columns[0].DisplayIndex = 2;
+                    //dataGridView1.Columns[1].HeaderText = "Табельный номер";
+                    //dataGridView1.Columns[2].HeaderText = "Имя";
+                    //dataGridView1.Columns[3].HeaderText = "Фамилия";
+                    //dataGridView1.Columns[4].HeaderText = "Отчество";
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (OverflowException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.Entity.Core.EntityException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
+
     }
 }

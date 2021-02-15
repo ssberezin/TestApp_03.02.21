@@ -34,7 +34,7 @@ namespace TestApp.Model
         
         public int Id { get; set; }
 
-        [Column("TabNumber", TypeName = "ntext")]
+        [Column("Табельный номер", TypeName = "ntext")]
         [MaxLength(4)]
         public string TabNumber { get; set; }
 
