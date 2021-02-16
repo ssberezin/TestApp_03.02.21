@@ -17,10 +17,9 @@ namespace TestApp.Model
             this.EmpName = "";
             this.EmpSurName = "";
             this.EmpPatronimic = "";
-            this.male = true;
-            this.female = false;
+            this.sex = true;//true - men, false - woomen            
             this.DateBirth = DateTime.Now;
-            this.BirthPalce = "";
+            this.BirthPlace = "";
             this.INN = "";
             this.StartDateWork = DateTime.Now;
             this.FireDate = new DateTime(2050, 1, 1);
@@ -34,7 +33,7 @@ namespace TestApp.Model
         
         public int Id { get; set; }
 
-        [Column("Табельный номер", TypeName = "ntext")]
+        [Column("TabNumber", TypeName = "ntext")]
         [MaxLength(4)]
         public string TabNumber { get; set; }
 
@@ -50,15 +49,15 @@ namespace TestApp.Model
         [MaxLength(50)]
         public string EmpPatronimic { get; set; }
 
-        public bool male { get; set; }
-        public bool female { get; set; }
+        public bool sex { get; set; }
+        
 
         [Column(TypeName = "datetime2")]
         public DateTime DateBirth { get; set; }
 
         [Column("BirthPalce", TypeName = "ntext")]
         [MaxLength(500)]
-        public string BirthPalce { get; set; }
+        public string BirthPlace { get; set; }
 
         [Column("INN", TypeName = "ntext")]
         [MaxLength(10)]

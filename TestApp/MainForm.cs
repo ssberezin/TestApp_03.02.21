@@ -19,8 +19,7 @@ namespace TestApp
         public MainForm()
         {
             InitializeComponent();
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.ReadOnly = true;
         }
 
         List<SubDivision> SubDivRecords;
@@ -68,7 +67,7 @@ namespace TestApp
                             EmpPatronimic = "Эдуардович",
                             TabNumber = "1254E523OL",
                             DateBirth = new DateTime (1981,1,10),
-                            BirthPalce = "Украина, г.Киев",
+                            BirthPlace = "Украина, г.Киев",
                             INN = "20587463229"
                         };
                        
@@ -83,7 +82,7 @@ namespace TestApp
                             EmpPatronimic = "Иванович",
                             TabNumber = "5254E5965K",
                             DateBirth = new DateTime(1984, 1, 11),
-                            BirthPalce = "Украина, г.Днепр",
+                            BirthPlace = "Украина, г.Днепр",
                             INN = "51587463300"
                         };
                         worker2.SubDivision = db.SubDivisions.Where(e => e.Id == 5).FirstOrDefault();
@@ -96,7 +95,7 @@ namespace TestApp
                             EmpPatronimic = "Прус",
                             TabNumber = "6524E52521",
                             DateBirth = new DateTime(1986, 3, 9),
-                            BirthPalce = "Украина, г.Харьков",
+                            BirthPlace = "Украина, г.Харьков",
                             INN = "85588523300"
                         };
                         worker3.SubDivision = db.SubDivisions.Where(e => e.Id == 5).FirstOrDefault();
@@ -109,10 +108,10 @@ namespace TestApp
                             EmpPatronimic = "Кирлловна",
                             TabNumber = "9564E5252H",
                             DateBirth = new DateTime(1983, 9, 4),
-                            BirthPalce = "Украина, г.Донецк",
+                            BirthPlace = "Украина, г.Донецк",
                             INN = "89624463741",
-                            male=false,
-                            female=true
+                            sex=false
+                            
                         };
                         worker4.SubDivision = db.SubDivisions.Where(e => e.Id == 5).FirstOrDefault();
                         db.Employees.Add(worker4);
@@ -177,9 +176,7 @@ namespace TestApp
 
         private void SubDivEditBtn_Click(object sender, EventArgs e)
         {
-            //времянка, пока не научился , как вытащить нужное подразделение из дерева
-            // DBConteiner db = new DBConteiner();
-            //SubDivision sub = db.SubDivisions.Where(ex => ex.Id == 4).FirstOrDefault();
+            
             if (SelectedSubDiv == null)
                 MessageBox.Show("Нужно выбрать подразделение");
             else
@@ -235,16 +232,15 @@ namespace TestApp
             {
                 try
                 {
-                    dataGridView1.DataSource = null;
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.Refresh();
                     List<Employee> empList = db.Employees.Where(e => e.SubDivision.Id == Id).ToList();
                     var source = new BindingSource(empList,null);
                     dataGridView1.DataSource = source;
-                    dataGridView1.Columns["Id"].Visible = false;
-                    //dataGridView1.Columns[0].DisplayIndex = 2;
-                    //dataGridView1.Columns[1].HeaderText = "Табельный номер";
-                    //dataGridView1.Columns[2].HeaderText = "Имя";
-                    //dataGridView1.Columns[3].HeaderText = "Фамилия";
-                    //dataGridView1.Columns[4].HeaderText = "Отчество";
+                    DataGreedViewUpdate(empList);                    
+                    dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -269,5 +265,53 @@ namespace TestApp
             }
         }
 
+        private void DataGreedViewUpdate(List<Employee> empList)
+        {
+            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "пол", Name = "пол", CellTemplate = new DataGridViewTextBoxCell() });
+            int i = 0;
+            foreach (Employee emp in empList)
+            {
+                if (emp.sex)
+                    dataGridView1["пол", i].Value = "муж";
+                else
+                    dataGridView1["пол", i].Value = "жен";
+                i++;
+            }
+            i = 0;
+            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "Дата увольнения", Name = "FireDate2", CellTemplate = new DataGridViewTextBoxCell() });
+            foreach (Employee emp in empList)
+            {
+                if (emp.FireDate == new DateTime(2050, 1, 1))
+                    dataGridView1["FireDate2", i].Value = "работает";
+                else
+                    dataGridView1["FireDate2", i].Value = emp.FireDate.ToString();
+                i++;
+            }
+            dataGridView1.Columns["Id"].Visible = false;
+            dataGridView1.Columns["SubDivision"].Visible = false;
+            dataGridView1.Columns["sex"].Visible = false;
+            dataGridView1.Columns["FireDate"].Visible = false;
+            dataGridView1.Columns["TabNumber"].DisplayIndex = 5;
+            dataGridView1.Columns["EmpName"].DisplayIndex = 2;
+            dataGridView1.Columns["EmpSurname"].DisplayIndex = 1;
+            dataGridView1.Columns["EmpPatronimic"].DisplayIndex = 3;
+            dataGridView1.Columns["FireDate2"].DisplayIndex = 10;
+            dataGridView1.Columns["пол"].DisplayIndex = 4;
+            dataGridView1.Columns["TabNumber"].HeaderText = "Табельный номер";
+            dataGridView1.Columns["EmpName"].HeaderText = "Имя";
+            dataGridView1.Columns["EmpSurName"].HeaderText = "Фамилия";
+            dataGridView1.Columns["EmpPatronimic"].HeaderText = "Отчество";
+            dataGridView1.Columns["DateBirth"].HeaderText = "Дата рождения";
+            dataGridView1.Columns["BirthPlace"].HeaderText = "Место рождения";
+            dataGridView1.Columns["INN"].HeaderText = "ИНН";
+            dataGridView1.Columns["StartDateWork"].HeaderText = "Дата начала работы";
+            dataGridView1.Columns["FireReason"].HeaderText = "Причина увольнения";
+        }
+        //add new Employee btn
+        private void button4_Click(object sender, EventArgs e)
+        {
+            EmployeeForm addNewEmp = new EmployeeForm();
+            addNewEmp.Show();
+        }
     }
 }

@@ -34,11 +34,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.EmployeesPanel = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.EmployeeEditBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.SubDivisionsPanel.SuspendLayout();
             this.EmployeesPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -111,6 +111,16 @@
             this.EmployeesPanel.Size = new System.Drawing.Size(893, 668);
             this.EmployeesPanel.TabIndex = 1;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 20);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(882, 598);
+            this.dataGridView1.TabIndex = 6;
+            // 
             // EmployeeEditBtn
             // 
             this.EmployeeEditBtn.BackColor = System.Drawing.SystemColors.Info;
@@ -154,16 +164,7 @@
             this.button4.TabIndex = 3;
             this.button4.Text = "Добавить";
             this.button4.UseVisualStyleBackColor = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(882, 598);
-            this.dataGridView1.TabIndex = 6;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainForm
             // 
