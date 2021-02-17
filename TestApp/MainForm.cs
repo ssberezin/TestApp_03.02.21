@@ -310,7 +310,7 @@ namespace TestApp
         //add new Employee btn
         private void button4_Click(object sender, EventArgs e)
         {
-            EmployeeForm addNewEmp = new EmployeeForm();
+            EmployeeForm addNewEmp = new EmployeeForm(SelectedSubDiv.Id);
             addNewEmp.Show();
         }
     }

@@ -35,9 +35,9 @@
             this.textBox_Surname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton_male = new System.Windows.Forms.RadioButton();
-            this.radioButton_female = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
+            this.radioButton_female = new System.Windows.Forms.RadioButton();
+            this.radioButton_male = new System.Windows.Forms.RadioButton();
             this.dateTimePicker_BirthDate = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_INN = new System.Windows.Forms.TextBox();
@@ -49,7 +49,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_EmpPosition = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
@@ -57,6 +57,8 @@
             this.comboBox_SubDivisionsList = new System.Windows.Forms.ComboBox();
             this.button_SaveEmpData = new System.Windows.Forms.Button();
             this.button_Cancel = new System.Windows.Forms.Button();
+            this.textBox_TabNumber = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -119,16 +121,14 @@
             this.panel1.Size = new System.Drawing.Size(265, 38);
             this.panel1.TabIndex = 6;
             // 
-            // radioButton_male
+            // label4
             // 
-            this.radioButton_male.AutoSize = true;
-            this.radioButton_male.Location = new System.Drawing.Point(73, 14);
-            this.radioButton_male.Name = "radioButton_male";
-            this.radioButton_male.Size = new System.Drawing.Size(86, 21);
-            this.radioButton_male.TabIndex = 7;
-            this.radioButton_male.TabStop = true;
-            this.radioButton_male.Text = "Мужской";
-            this.radioButton_male.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 17);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Пол";
             // 
             // radioButton_female
             // 
@@ -141,14 +141,16 @@
             this.radioButton_female.Text = "Женский";
             this.radioButton_female.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // radioButton_male
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 17);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Пол";
+            this.radioButton_male.AutoSize = true;
+            this.radioButton_male.Location = new System.Drawing.Point(73, 14);
+            this.radioButton_male.Name = "radioButton_male";
+            this.radioButton_male.Size = new System.Drawing.Size(86, 21);
+            this.radioButton_male.TabIndex = 7;
+            this.radioButton_male.TabStop = true;
+            this.radioButton_male.Text = "Мужской";
+            this.radioButton_male.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker_BirthDate
             // 
@@ -168,7 +170,7 @@
             // 
             // textBox_INN
             // 
-            this.textBox_INN.Location = new System.Drawing.Point(85, 200);
+            this.textBox_INN.Location = new System.Drawing.Point(85, 201);
             this.textBox_INN.Name = "textBox_INN";
             this.textBox_INN.Size = new System.Drawing.Size(192, 22);
             this.textBox_INN.TabIndex = 10;
@@ -176,7 +178,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 203);
+            this.label6.Location = new System.Drawing.Point(8, 204);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 17);
             this.label6.TabIndex = 9;
@@ -185,7 +187,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(55, 230);
+            this.label7.Location = new System.Drawing.Point(55, 283);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(190, 17);
             this.label7.TabIndex = 12;
@@ -193,14 +195,14 @@
             // 
             // dateTimePicker_StartDateWork
             // 
-            this.dateTimePicker_StartDateWork.Location = new System.Drawing.Point(8, 250);
+            this.dateTimePicker_StartDateWork.Location = new System.Drawing.Point(8, 303);
             this.dateTimePicker_StartDateWork.Name = "dateTimePicker_StartDateWork";
             this.dateTimePicker_StartDateWork.Size = new System.Drawing.Size(269, 22);
             this.dateTimePicker_StartDateWork.TabIndex = 11;
             // 
             // dateTimePicker_FireDate
             // 
-            this.dateTimePicker_FireDate.Location = new System.Drawing.Point(8, 301);
+            this.dateTimePicker_FireDate.Location = new System.Drawing.Point(8, 354);
             this.dateTimePicker_FireDate.Name = "dateTimePicker_FireDate";
             this.dateTimePicker_FireDate.Size = new System.Drawing.Size(269, 22);
             this.dateTimePicker_FireDate.TabIndex = 13;
@@ -208,17 +210,18 @@
             // checkBox_Fired
             // 
             this.checkBox_Fired.AutoSize = true;
-            this.checkBox_Fired.Location = new System.Drawing.Point(12, 277);
+            this.checkBox_Fired.Location = new System.Drawing.Point(12, 330);
             this.checkBox_Fired.Name = "checkBox_Fired";
             this.checkBox_Fired.Size = new System.Drawing.Size(92, 21);
             this.checkBox_Fired.TabIndex = 14;
             this.checkBox_Fired.Text = "Уволить?";
             this.checkBox_Fired.UseVisualStyleBackColor = true;
+            this.checkBox_Fired.CheckedChanged += new System.EventHandler(this.checkBox_Fired_CheckedChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(133, 279);
+            this.label8.Location = new System.Drawing.Point(133, 332);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(123, 17);
             this.label8.TabIndex = 15;
@@ -226,27 +229,27 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(8, 349);
+            this.richTextBox1.Location = new System.Drawing.Point(8, 400);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(269, 161);
+            this.richTextBox1.Size = new System.Drawing.Size(269, 146);
             this.richTextBox1.TabIndex = 16;
             this.richTextBox1.Text = "";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(55, 329);
+            this.label9.Location = new System.Drawing.Point(65, 380);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(147, 17);
             this.label9.TabIndex = 17;
             this.label9.Text = "Причина увольнения";
             // 
-            // textBox1
+            // textBox_EmpPosition
             // 
-            this.textBox1.Location = new System.Drawing.Point(442, 48);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(610, 22);
-            this.textBox1.TabIndex = 21;
+            this.textBox_EmpPosition.Location = new System.Drawing.Point(442, 48);
+            this.textBox_EmpPosition.Name = "textBox_EmpPosition";
+            this.textBox_EmpPosition.Size = new System.Drawing.Size(610, 22);
+            this.textBox_EmpPosition.TabIndex = 21;
             // 
             // label11
             // 
@@ -296,35 +299,54 @@
             // button_SaveEmpData
             // 
             this.button_SaveEmpData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button_SaveEmpData.Location = new System.Drawing.Point(10, 517);
+            this.button_SaveEmpData.Location = new System.Drawing.Point(10, 553);
             this.button_SaveEmpData.Name = "button_SaveEmpData";
             this.button_SaveEmpData.Size = new System.Drawing.Size(136, 32);
             this.button_SaveEmpData.TabIndex = 26;
             this.button_SaveEmpData.Text = "Сохранить";
             this.button_SaveEmpData.UseVisualStyleBackColor = false;
+            this.button_SaveEmpData.Click += new System.EventHandler(this.button_SaveEmpData_Click);
             // 
             // button_Cancel
             // 
             this.button_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button_Cancel.Location = new System.Drawing.Point(152, 517);
+            this.button_Cancel.Location = new System.Drawing.Point(152, 553);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(136, 32);
             this.button_Cancel.TabIndex = 27;
             this.button_Cancel.Text = "Отменить";
             this.button_Cancel.UseVisualStyleBackColor = false;
             // 
+            // textBox_TabNumber
+            // 
+            this.textBox_TabNumber.Location = new System.Drawing.Point(11, 253);
+            this.textBox_TabNumber.Name = "textBox_TabNumber";
+            this.textBox_TabNumber.Size = new System.Drawing.Size(266, 22);
+            this.textBox_TabNumber.TabIndex = 29;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(82, 226);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 17);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "табельный номер";
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 560);
+            this.ClientSize = new System.Drawing.Size(1082, 595);
+            this.Controls.Add(this.textBox_TabNumber);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.button_Cancel);
             this.Controls.Add(this.button_SaveEmpData);
             this.Controls.Add(this.comboBox_SubDivisionsList);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_EmpPosition);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.richTextBox1);
@@ -377,7 +399,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_EmpPosition;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label12;
@@ -385,5 +407,7 @@
         private System.Windows.Forms.ComboBox comboBox_SubDivisionsList;
         private System.Windows.Forms.Button button_SaveEmpData;
         private System.Windows.Forms.Button button_Cancel;
+        private System.Windows.Forms.TextBox textBox_TabNumber;
+        private System.Windows.Forms.Label label10;
     }
 }

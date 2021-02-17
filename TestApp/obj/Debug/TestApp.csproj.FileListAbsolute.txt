@@ -43,3 +43,4 @@ D:\работа\TestApp\AppTest_3_zero\AppTest_3_zero\TestApp\bin\Debug\EntityFr
 D:\работа\TestApp\AppTest_3_zero\AppTest_3_zero\TestApp\obj\Debug\TestApp.csproj.CopyComplete
 d:\работа\TestApp\TestApp_03.02.21\TestApp\obj\Debug\TestApp.MainForm.resources
 d:\работа\TestApp\TestApp_03.02.21\TestApp\obj\Debug\TestApp.SubDivForm.resources
+D:\работа\TestApp\TestApp_03.02.21\TestApp\obj\Debug\TestApp.EmployeeForm.resources
