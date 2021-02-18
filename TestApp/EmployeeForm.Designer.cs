@@ -38,10 +38,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.radioButton_female = new System.Windows.Forms.RadioButton();
             this.radioButton_male = new System.Windows.Forms.RadioButton();
-            this.dateTimePicker_BirthDate = new System.Windows.Forms.DateTimePicker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox_INN = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker_StartDateWork = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_FireDate = new System.Windows.Forms.DateTimePicker();
@@ -59,6 +55,12 @@
             this.button_Cancel = new System.Windows.Forms.Button();
             this.textBox_TabNumber = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.richTextBox_BirthPlace = new System.Windows.Forms.RichTextBox();
+            this.textBox_INN = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dateTimePicker_BirthDate = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +86,7 @@
             this.textBox_Patronimic.Location = new System.Drawing.Point(89, 66);
             this.textBox_Patronimic.Name = "textBox_Patronimic";
             this.textBox_Patronimic.Size = new System.Drawing.Size(192, 22);
-            this.textBox_Patronimic.TabIndex = 3;
+            this.textBox_Patronimic.TabIndex = 2;
             // 
             // label2
             // 
@@ -100,7 +102,7 @@
             this.textBox_Surname.Location = new System.Drawing.Point(89, 10);
             this.textBox_Surname.Name = "textBox_Surname";
             this.textBox_Surname.Size = new System.Drawing.Size(192, 22);
-            this.textBox_Surname.TabIndex = 5;
+            this.textBox_Surname.TabIndex = 0;
             // 
             // label3
             // 
@@ -116,7 +118,7 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.radioButton_female);
             this.panel1.Controls.Add(this.radioButton_male);
-            this.panel1.Location = new System.Drawing.Point(12, 94);
+            this.panel1.Location = new System.Drawing.Point(11, 182);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(265, 38);
             this.panel1.TabIndex = 6;
@@ -136,7 +138,7 @@
             this.radioButton_female.Location = new System.Drawing.Point(167, 14);
             this.radioButton_female.Name = "radioButton_female";
             this.radioButton_female.Size = new System.Drawing.Size(88, 21);
-            this.radioButton_female.TabIndex = 8;
+            this.radioButton_female.TabIndex = 4;
             this.radioButton_female.TabStop = true;
             this.radioButton_female.Text = "Женский";
             this.radioButton_female.UseVisualStyleBackColor = true;
@@ -147,47 +149,15 @@
             this.radioButton_male.Location = new System.Drawing.Point(73, 14);
             this.radioButton_male.Name = "radioButton_male";
             this.radioButton_male.Size = new System.Drawing.Size(86, 21);
-            this.radioButton_male.TabIndex = 7;
+            this.radioButton_male.TabIndex = 3;
             this.radioButton_male.TabStop = true;
             this.radioButton_male.Text = "Мужской";
             this.radioButton_male.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker_BirthDate
-            // 
-            this.dateTimePicker_BirthDate.Location = new System.Drawing.Point(12, 161);
-            this.dateTimePicker_BirthDate.Name = "dateTimePicker_BirthDate";
-            this.dateTimePicker_BirthDate.Size = new System.Drawing.Size(269, 22);
-            this.dateTimePicker_BirthDate.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(86, 141);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(111, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Дата рождения";
-            // 
-            // textBox_INN
-            // 
-            this.textBox_INN.Location = new System.Drawing.Point(85, 201);
-            this.textBox_INN.Name = "textBox_INN";
-            this.textBox_INN.Size = new System.Drawing.Size(192, 22);
-            this.textBox_INN.TabIndex = 10;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 204);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 17);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "ИНН";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(55, 283);
+            this.label7.Location = new System.Drawing.Point(55, 276);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(190, 17);
             this.label7.TabIndex = 12;
@@ -195,25 +165,25 @@
             // 
             // dateTimePicker_StartDateWork
             // 
-            this.dateTimePicker_StartDateWork.Location = new System.Drawing.Point(8, 303);
+            this.dateTimePicker_StartDateWork.Location = new System.Drawing.Point(8, 296);
             this.dateTimePicker_StartDateWork.Name = "dateTimePicker_StartDateWork";
             this.dateTimePicker_StartDateWork.Size = new System.Drawing.Size(269, 22);
-            this.dateTimePicker_StartDateWork.TabIndex = 11;
+            this.dateTimePicker_StartDateWork.TabIndex = 8;
             // 
             // dateTimePicker_FireDate
             // 
-            this.dateTimePicker_FireDate.Location = new System.Drawing.Point(8, 354);
+            this.dateTimePicker_FireDate.Location = new System.Drawing.Point(8, 350);
             this.dateTimePicker_FireDate.Name = "dateTimePicker_FireDate";
             this.dateTimePicker_FireDate.Size = new System.Drawing.Size(269, 22);
-            this.dateTimePicker_FireDate.TabIndex = 13;
+            this.dateTimePicker_FireDate.TabIndex = 10;
             // 
             // checkBox_Fired
             // 
             this.checkBox_Fired.AutoSize = true;
-            this.checkBox_Fired.Location = new System.Drawing.Point(12, 330);
+            this.checkBox_Fired.Location = new System.Drawing.Point(12, 323);
             this.checkBox_Fired.Name = "checkBox_Fired";
             this.checkBox_Fired.Size = new System.Drawing.Size(92, 21);
-            this.checkBox_Fired.TabIndex = 14;
+            this.checkBox_Fired.TabIndex = 9;
             this.checkBox_Fired.Text = "Уволить?";
             this.checkBox_Fired.UseVisualStyleBackColor = true;
             this.checkBox_Fired.CheckedChanged += new System.EventHandler(this.checkBox_Fired_CheckedChanged);
@@ -221,7 +191,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(133, 332);
+            this.label8.Location = new System.Drawing.Point(133, 325);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(123, 17);
             this.label8.TabIndex = 15;
@@ -229,16 +199,16 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(8, 400);
+            this.richTextBox1.Location = new System.Drawing.Point(8, 393);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(269, 146);
-            this.richTextBox1.TabIndex = 16;
+            this.richTextBox1.TabIndex = 11;
             this.richTextBox1.Text = "";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(65, 380);
+            this.label9.Location = new System.Drawing.Point(65, 373);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(147, 17);
             this.label9.TabIndex = 17;
@@ -246,15 +216,15 @@
             // 
             // textBox_EmpPosition
             // 
-            this.textBox_EmpPosition.Location = new System.Drawing.Point(442, 48);
+            this.textBox_EmpPosition.Location = new System.Drawing.Point(442, 95);
             this.textBox_EmpPosition.Name = "textBox_EmpPosition";
             this.textBox_EmpPosition.Size = new System.Drawing.Size(610, 22);
-            this.textBox_EmpPosition.TabIndex = 21;
+            this.textBox_EmpPosition.TabIndex = 13;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(311, 53);
+            this.label11.Location = new System.Drawing.Point(311, 100);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(81, 17);
             this.label11.TabIndex = 20;
@@ -263,17 +233,17 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(314, 117);
+            this.dataGridView1.Location = new System.Drawing.Point(314, 161);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(756, 431);
+            this.dataGridView1.Size = new System.Drawing.Size(756, 422);
             this.dataGridView1.TabIndex = 22;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(311, 85);
+            this.label12.Location = new System.Drawing.Point(311, 134);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(374, 17);
             this.label12.TabIndex = 23;
@@ -282,7 +252,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(311, 15);
+            this.label13.Location = new System.Drawing.Point(311, 62);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(113, 17);
             this.label13.TabIndex = 24;
@@ -291,18 +261,18 @@
             // comboBox_SubDivisionsList
             // 
             this.comboBox_SubDivisionsList.FormattingEnabled = true;
-            this.comboBox_SubDivisionsList.Location = new System.Drawing.Point(442, 13);
+            this.comboBox_SubDivisionsList.Location = new System.Drawing.Point(442, 60);
             this.comboBox_SubDivisionsList.Name = "comboBox_SubDivisionsList";
             this.comboBox_SubDivisionsList.Size = new System.Drawing.Size(610, 24);
-            this.comboBox_SubDivisionsList.TabIndex = 25;
+            this.comboBox_SubDivisionsList.TabIndex = 12;
             // 
             // button_SaveEmpData
             // 
             this.button_SaveEmpData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button_SaveEmpData.Location = new System.Drawing.Point(10, 553);
+            this.button_SaveEmpData.Location = new System.Drawing.Point(10, 551);
             this.button_SaveEmpData.Name = "button_SaveEmpData";
             this.button_SaveEmpData.Size = new System.Drawing.Size(136, 32);
-            this.button_SaveEmpData.TabIndex = 26;
+            this.button_SaveEmpData.TabIndex = 14;
             this.button_SaveEmpData.Text = "Сохранить";
             this.button_SaveEmpData.UseVisualStyleBackColor = false;
             this.button_SaveEmpData.Click += new System.EventHandler(this.button_SaveEmpData_Click);
@@ -310,34 +280,89 @@
             // button_Cancel
             // 
             this.button_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.button_Cancel.Location = new System.Drawing.Point(152, 553);
+            this.button_Cancel.Location = new System.Drawing.Point(152, 551);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(136, 32);
-            this.button_Cancel.TabIndex = 27;
+            this.button_Cancel.TabIndex = 15;
             this.button_Cancel.Text = "Отменить";
             this.button_Cancel.UseVisualStyleBackColor = false;
             // 
             // textBox_TabNumber
             // 
-            this.textBox_TabNumber.Location = new System.Drawing.Point(11, 253);
+            this.textBox_TabNumber.Location = new System.Drawing.Point(11, 246);
             this.textBox_TabNumber.Name = "textBox_TabNumber";
             this.textBox_TabNumber.Size = new System.Drawing.Size(266, 22);
-            this.textBox_TabNumber.TabIndex = 29;
+            this.textBox_TabNumber.TabIndex = 7;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(82, 226);
+            this.label10.Location = new System.Drawing.Point(82, 223);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(125, 17);
             this.label10.TabIndex = 28;
             this.label10.Text = "табельный номер";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(301, 15);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(118, 17);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "Место рождения";
+            // 
+            // richTextBox_BirthPlace
+            // 
+            this.richTextBox_BirthPlace.Location = new System.Drawing.Point(442, 15);
+            this.richTextBox_BirthPlace.Name = "richTextBox_BirthPlace";
+            this.richTextBox_BirthPlace.Size = new System.Drawing.Size(610, 34);
+            this.richTextBox_BirthPlace.TabIndex = 11;
+            this.richTextBox_BirthPlace.Text = "";
+            // 
+            // textBox_INN
+            // 
+            this.textBox_INN.Location = new System.Drawing.Point(85, 153);
+            this.textBox_INN.Name = "textBox_INN";
+            this.textBox_INN.Size = new System.Drawing.Size(192, 22);
+            this.textBox_INN.TabIndex = 32;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 156);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 17);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "ИНН";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(86, 100);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(111, 17);
+            this.label5.TabIndex = 33;
+            this.label5.Text = "Дата рождения";
+            // 
+            // dateTimePicker_BirthDate
+            // 
+            this.dateTimePicker_BirthDate.Location = new System.Drawing.Point(12, 120);
+            this.dateTimePicker_BirthDate.Name = "dateTimePicker_BirthDate";
+            this.dateTimePicker_BirthDate.Size = new System.Drawing.Size(269, 22);
+            this.dateTimePicker_BirthDate.TabIndex = 31;
+            // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 595);
+            this.ClientSize = new System.Drawing.Size(1082, 593);
+            this.Controls.Add(this.textBox_INN);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dateTimePicker_BirthDate);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.richTextBox_BirthPlace);
             this.Controls.Add(this.textBox_TabNumber);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button_Cancel);
@@ -355,10 +380,6 @@
             this.Controls.Add(this.dateTimePicker_FireDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dateTimePicker_StartDateWork);
-            this.Controls.Add(this.textBox_INN);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.dateTimePicker_BirthDate);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox_Surname);
             this.Controls.Add(this.label3);
@@ -388,10 +409,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton radioButton_female;
         private System.Windows.Forms.RadioButton radioButton_male;
-        private System.Windows.Forms.DateTimePicker dateTimePicker_BirthDate;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox_INN;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateTimePicker_StartDateWork;
         private System.Windows.Forms.DateTimePicker dateTimePicker_FireDate;
@@ -409,5 +426,11 @@
         private System.Windows.Forms.Button button_Cancel;
         private System.Windows.Forms.TextBox textBox_TabNumber;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RichTextBox richTextBox_BirthPlace;
+        private System.Windows.Forms.TextBox textBox_INN;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_BirthDate;
     }
 }

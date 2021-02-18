@@ -12,8 +12,8 @@ namespace TestApp.Model
         public EmployeeSubDivs()
         {
             TransferDate = DateTime.Now;
-            Position = "";
-            SubDivisions = new ObservableCollection<SubDivision>();
+            Position = "";            
+            //SubDivisions = new ObservableCollection<SubDivision>();
         }
         //[Key]
         //public int EmployeeSubDivs_Id { get; set; }
@@ -25,10 +25,13 @@ namespace TestApp.Model
         public DateTime TransferDate { get; set; }
 
         [Column("Position", TypeName = "ntext")]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Position { get; set; }
 
+        
+        public int EmpSubDivision_Id { get; set; }
+
         public virtual Employee Employee { get; set; }
-        public virtual ObservableCollection <SubDivision >SubDivisions { get; set; }
+       // public virtual ObservableCollection <SubDivision >SubDivisions { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace TestApp.Model
         public DateTime CollapsDate { get; set; }
 
         public virtual ObservableCollection<Employee> Employees { get; set; }
-        public virtual EmployeeSubDivs EmployeeSubDiv { get; set; }
+       // public virtual EmployeeSubDivs EmployeeSubDiv { get; set; }
 
     }
 }
