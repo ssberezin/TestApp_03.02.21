@@ -291,12 +291,17 @@ namespace TestApp
             dataGridView1.Columns["SubDivision"].Visible = false;
             dataGridView1.Columns["sex"].Visible = false;
             dataGridView1.Columns["FireDate"].Visible = false;
+
             dataGridView1.Columns["TabNumber"].DisplayIndex = 5;
             dataGridView1.Columns["EmpName"].DisplayIndex = 2;
             dataGridView1.Columns["EmpSurname"].DisplayIndex = 1;
             dataGridView1.Columns["EmpPatronimic"].DisplayIndex = 3;
             dataGridView1.Columns["FireDate2"].DisplayIndex = 10;
             dataGridView1.Columns["пол"].DisplayIndex = 4;
+
+            dataGridView1.Columns["DateBirth"].DefaultCellStyle.Format = "MM/dd/yyyy";
+            dataGridView1.Columns["StartDateWork"].DefaultCellStyle.Format = "MM/dd/yyyy";
+
             dataGridView1.Columns["TabNumber"].HeaderText = "Табельный номер";
             dataGridView1.Columns["EmpName"].HeaderText = "Имя";
             dataGridView1.Columns["EmpSurName"].HeaderText = "Фамилия";

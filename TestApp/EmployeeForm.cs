@@ -98,7 +98,7 @@ namespace TestApp
                     {
                         if (item.TabNumber == SelectedEmployee.TabNumber)
                         {
-                            SelectedSubDivision.Id = item.Id;
+                            SelectedSubDivision.Id = item.SubDivision.Id;
                             break;
                         }
                     }
@@ -258,11 +258,15 @@ namespace TestApp
             {
                 try
                 {
-                    //тут надо формировать дататейбл, после чего уже работать дальше. 
+                 
                     dataGridView1.Rows.Clear();
                     dataGridView1.Columns.Clear();
                     dataGridView1.Refresh();
                     List<EmployeeSubDivs> list = db.EmployeeSubDivisions.Where(e => e.Employee.Id == empId).ToList();
+                    foreach (var item in list)
+                    {
+                        item.SubDivName = db.SubDivisions.Where(e => e.Id == item.EmpSubDivision_Id).FirstOrDefault().SubDivName;
+                    }
                     var source = new BindingSource(list, null);
                     dataGridView1.DataSource = source;
                     DataGreedViewUpdate(list);
@@ -294,45 +298,21 @@ namespace TestApp
 
         private void DataGreedViewUpdate(List<EmployeeSubDivs> empList)
         {
-            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "пол", Name = "пол", CellTemplate = new DataGridViewTextBoxCell() });
-            int i = 0;
-            foreach (Employee emp in empList)
-            {
-                if (emp.sex)
-                    dataGridView1["пол", i].Value = "муж";
-                else
-                    dataGridView1["пол", i].Value = "жен";
-                i++;
-            }
-            i = 0;
-            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "Дата увольнения", Name = "FireDate2", CellTemplate = new DataGridViewTextBoxCell() });
-            foreach (Employee emp in empList)
-            {
-                if (emp.FireDate == new DateTime(2050, 1, 1))
-                    dataGridView1["FireDate2", i].Value = "работает";
-                else
-                    dataGridView1["FireDate2", i].Value = emp.FireDate.ToString();
-                i++;
-            }
+           
             dataGridView1.Columns["Id"].Visible = false;
-            dataGridView1.Columns["SubDivision"].Visible = false;
-            dataGridView1.Columns["sex"].Visible = false;
-            dataGridView1.Columns["FireDate"].Visible = false;
-            dataGridView1.Columns["TabNumber"].DisplayIndex = 5;
-            dataGridView1.Columns["EmpName"].DisplayIndex = 2;
-            dataGridView1.Columns["EmpSurname"].DisplayIndex = 1;
-            dataGridView1.Columns["EmpPatronimic"].DisplayIndex = 3;
-            dataGridView1.Columns["FireDate2"].DisplayIndex = 10;
-            dataGridView1.Columns["пол"].DisplayIndex = 4;
-            dataGridView1.Columns["TabNumber"].HeaderText = "Табельный номер";
-            dataGridView1.Columns["EmpName"].HeaderText = "Имя";
-            dataGridView1.Columns["EmpSurName"].HeaderText = "Фамилия";
-            dataGridView1.Columns["EmpPatronimic"].HeaderText = "Отчество";
-            dataGridView1.Columns["DateBirth"].HeaderText = "Дата рождения";
-            dataGridView1.Columns["BirthPlace"].HeaderText = "Место рождения";
-            dataGridView1.Columns["INN"].HeaderText = "ИНН";
-            dataGridView1.Columns["StartDateWork"].HeaderText = "Дата начала работы";
-            dataGridView1.Columns["FireReason"].HeaderText = "Причина увольнения";
+            dataGridView1.Columns["EmpSubDivision_Id"].Visible = false;
+            dataGridView1.Columns["Employee"].Visible = false;
+
+            dataGridView1.Columns["SubDivName"].DisplayIndex = 0;
+            dataGridView1.Columns["TransferDate"].DisplayIndex = 1;
+            dataGridView1.Columns["Position"].DisplayIndex = 2;
+
+            dataGridView1.Columns["TransferDate"].DefaultCellStyle.Format = "MM/dd/yyyy";
+
+            dataGridView1.Columns["SubDivName"].HeaderText = "Подразделение";
+            dataGridView1.Columns["Position"].HeaderText = "Должность";
+            dataGridView1.Columns["TransferDate"].HeaderText = "Дата перевода";
+            
         }
         //if it is Ok - return true
         private bool EmpDataValidation()

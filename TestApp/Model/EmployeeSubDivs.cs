@@ -12,7 +12,8 @@ namespace TestApp.Model
         public EmployeeSubDivs()
         {
             TransferDate = DateTime.Now;
-            Position = "";            
+            Position = "";
+            SubDivName = "";
             //SubDivisions = new ObservableCollection<SubDivision>();
         }
         //[Key]
@@ -28,8 +29,11 @@ namespace TestApp.Model
         [MaxLength(100)]
         public string Position { get; set; }
 
-        
+       // [NotMapped]
         public int EmpSubDivision_Id { get; set; }
+
+        [NotMapped]
+        public string SubDivName { get; set; }
 
         public virtual Employee Employee { get; set; }
        // public virtual ObservableCollection <SubDivision >SubDivisions { get; set; }

@@ -34,10 +34,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox_Surname = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.radioButton_female = new System.Windows.Forms.RadioButton();
-            this.radioButton_male = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker_StartDateWork = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_FireDate = new System.Windows.Forms.DateTimePicker();
@@ -61,7 +57,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker_BirthDate = new System.Windows.Forms.DateTimePicker();
-            this.panel1.SuspendLayout();
+            this.label4 = new System.Windows.Forms.Label();
+            this.radioButton_female = new System.Windows.Forms.RadioButton();
+            this.radioButton_male = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,47 +110,6 @@
             this.label3.Size = new System.Drawing.Size(70, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Фамилия";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.radioButton_female);
-            this.panel1.Controls.Add(this.radioButton_male);
-            this.panel1.Location = new System.Drawing.Point(11, 182);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(265, 38);
-            this.panel1.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 17);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Пол";
-            // 
-            // radioButton_female
-            // 
-            this.radioButton_female.AutoSize = true;
-            this.radioButton_female.Location = new System.Drawing.Point(167, 14);
-            this.radioButton_female.Name = "radioButton_female";
-            this.radioButton_female.Size = new System.Drawing.Size(88, 21);
-            this.radioButton_female.TabIndex = 4;
-            this.radioButton_female.TabStop = true;
-            this.radioButton_female.Text = "Женский";
-            this.radioButton_female.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_male
-            // 
-            this.radioButton_male.AutoSize = true;
-            this.radioButton_male.Location = new System.Drawing.Point(73, 14);
-            this.radioButton_male.Name = "radioButton_male";
-            this.radioButton_male.Size = new System.Drawing.Size(86, 21);
-            this.radioButton_male.TabIndex = 3;
-            this.radioButton_male.TabStop = true;
-            this.radioButton_male.Text = "Мужской";
-            this.radioButton_male.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -219,7 +176,7 @@
             this.textBox_EmpPosition.Location = new System.Drawing.Point(442, 95);
             this.textBox_EmpPosition.Name = "textBox_EmpPosition";
             this.textBox_EmpPosition.Size = new System.Drawing.Size(610, 22);
-            this.textBox_EmpPosition.TabIndex = 13;
+            this.textBox_EmpPosition.TabIndex = 14;
             // 
             // label11
             // 
@@ -264,7 +221,7 @@
             this.comboBox_SubDivisionsList.Location = new System.Drawing.Point(442, 60);
             this.comboBox_SubDivisionsList.Name = "comboBox_SubDivisionsList";
             this.comboBox_SubDivisionsList.Size = new System.Drawing.Size(610, 24);
-            this.comboBox_SubDivisionsList.TabIndex = 12;
+            this.comboBox_SubDivisionsList.TabIndex = 13;
             // 
             // button_SaveEmpData
             // 
@@ -272,7 +229,7 @@
             this.button_SaveEmpData.Location = new System.Drawing.Point(10, 551);
             this.button_SaveEmpData.Name = "button_SaveEmpData";
             this.button_SaveEmpData.Size = new System.Drawing.Size(136, 32);
-            this.button_SaveEmpData.TabIndex = 14;
+            this.button_SaveEmpData.TabIndex = 15;
             this.button_SaveEmpData.Text = "Сохранить";
             this.button_SaveEmpData.UseVisualStyleBackColor = false;
             this.button_SaveEmpData.Click += new System.EventHandler(this.button_SaveEmpData_Click);
@@ -283,7 +240,7 @@
             this.button_Cancel.Location = new System.Drawing.Point(152, 551);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(136, 32);
-            this.button_Cancel.TabIndex = 15;
+            this.button_Cancel.TabIndex = 16;
             this.button_Cancel.Text = "Отменить";
             this.button_Cancel.UseVisualStyleBackColor = false;
             // 
@@ -317,7 +274,7 @@
             this.richTextBox_BirthPlace.Location = new System.Drawing.Point(442, 15);
             this.richTextBox_BirthPlace.Name = "richTextBox_BirthPlace";
             this.richTextBox_BirthPlace.Size = new System.Drawing.Size(610, 34);
-            this.richTextBox_BirthPlace.TabIndex = 11;
+            this.richTextBox_BirthPlace.TabIndex = 12;
             this.richTextBox_BirthPlace.Text = "";
             // 
             // textBox_INN
@@ -325,7 +282,7 @@
             this.textBox_INN.Location = new System.Drawing.Point(85, 153);
             this.textBox_INN.Name = "textBox_INN";
             this.textBox_INN.Size = new System.Drawing.Size(192, 22);
-            this.textBox_INN.TabIndex = 32;
+            this.textBox_INN.TabIndex = 4;
             // 
             // label6
             // 
@@ -350,13 +307,47 @@
             this.dateTimePicker_BirthDate.Location = new System.Drawing.Point(12, 120);
             this.dateTimePicker_BirthDate.Name = "dateTimePicker_BirthDate";
             this.dateTimePicker_BirthDate.Size = new System.Drawing.Size(269, 22);
-            this.dateTimePicker_BirthDate.TabIndex = 31;
+            this.dateTimePicker_BirthDate.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 190);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 17);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Пол";
+            // 
+            // radioButton_female
+            // 
+            this.radioButton_female.AutoSize = true;
+            this.radioButton_female.Location = new System.Drawing.Point(179, 190);
+            this.radioButton_female.Name = "radioButton_female";
+            this.radioButton_female.Size = new System.Drawing.Size(88, 21);
+            this.radioButton_female.TabIndex = 6;
+            this.radioButton_female.TabStop = true;
+            this.radioButton_female.Text = "Женский";
+            this.radioButton_female.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_male
+            // 
+            this.radioButton_male.AutoSize = true;
+            this.radioButton_male.Location = new System.Drawing.Point(85, 190);
+            this.radioButton_male.Name = "radioButton_male";
+            this.radioButton_male.Size = new System.Drawing.Size(86, 21);
+            this.radioButton_male.TabIndex = 5;
+            this.radioButton_male.TabStop = true;
+            this.radioButton_male.Text = "Мужской";
+            this.radioButton_male.UseVisualStyleBackColor = true;
             // 
             // EmployeeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 593);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.radioButton_female);
+            this.Controls.Add(this.radioButton_male);
             this.Controls.Add(this.textBox_INN);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -380,7 +371,6 @@
             this.Controls.Add(this.dateTimePicker_FireDate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dateTimePicker_StartDateWork);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.textBox_Surname);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox_Patronimic);
@@ -389,8 +379,6 @@
             this.Controls.Add(this.label1);
             this.Name = "EmployeeForm";
             this.Text = "`";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -405,10 +393,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox_Surname;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton_female;
-        private System.Windows.Forms.RadioButton radioButton_male;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateTimePicker_StartDateWork;
         private System.Windows.Forms.DateTimePicker dateTimePicker_FireDate;
@@ -432,5 +416,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker_BirthDate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton radioButton_female;
+        private System.Windows.Forms.RadioButton radioButton_male;
     }
 }
