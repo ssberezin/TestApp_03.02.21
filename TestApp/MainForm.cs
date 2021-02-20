@@ -29,6 +29,7 @@ namespace TestApp
         {
             SubDivRecords = new List<SubDivision>(); 
             PreviosDataLoad();
+           
         }
 
 
@@ -36,7 +37,7 @@ namespace TestApp
         private void button1_Click(object sender, EventArgs e)
         {
             SubDivForm addNewSubDiv = new SubDivForm();
-            addNewSubDiv.Show();
+            addNewSubDiv.ShowDialog();
         }
 
         //here we fill in previos data to DB
@@ -182,7 +183,9 @@ namespace TestApp
             else
             {
                 SubDivForm addNewSubDiv = new SubDivForm(SelectedSubDiv);
-                addNewSubDiv.Show();
+                //addNewSubDiv.Owner = this;
+                addNewSubDiv.ShowDialog();
+                
             }
             
         }
@@ -316,7 +319,20 @@ namespace TestApp
         private void button4_Click(object sender, EventArgs e)
         {
             EmployeeForm addNewEmp = new EmployeeForm(SelectedSubDiv.Id);
-            addNewEmp.Show();
+            addNewEmp.ShowDialog();
         }
+
+        private void EmployeeEditBtn_Click(object sender, EventArgs e)
+        {
+            int impId=(int)dataGridView1.SelectedRows[0].Cells[0].Value;
+            EmployeeForm addNewEmp = new EmployeeForm(impId , SelectedSubDiv.Id);
+            addNewEmp.ShowDialog();
+        }
+
+     
+
+      
+
+        
     }
 }

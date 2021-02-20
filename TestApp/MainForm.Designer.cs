@@ -131,6 +131,7 @@
             this.EmployeeEditBtn.TabIndex = 5;
             this.EmployeeEditBtn.Text = "Редактировать";
             this.EmployeeEditBtn.UseVisualStyleBackColor = false;
+            this.EmployeeEditBtn.Click += new System.EventHandler(this.EmployeeEditBtn_Click);
             // 
             // label2
             // 

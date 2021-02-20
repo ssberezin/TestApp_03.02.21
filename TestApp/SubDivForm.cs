@@ -51,8 +51,8 @@ namespace TestApp
                     subDivClosed=false;
 
         private void SubDivForm_Load(object sender, EventArgs e)
-        {
-            SetDefaultControls();
+        {         
+            SetDefaultControls();            
         }
 
                
@@ -382,11 +382,11 @@ namespace TestApp
             }
         }
 
+      
+
         private void ParentSubDiv_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             SelectedSubDivivsion = (SubDivision)ParentSubDiv_comboBox.SelectedItem;
-
         }
     }
 }

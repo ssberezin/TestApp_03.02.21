@@ -15,6 +15,7 @@ namespace TestApp
 {
     public partial class EmployeeForm : Form
     {
+        //for add new employee
         public EmployeeForm(int subDivId)
         {
             InitializeComponent();
@@ -26,21 +27,23 @@ namespace TestApp
             checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
         }
 
-        
+        //for edit imployee
         public EmployeeForm(int empId, int subDivId)
         {
             InitializeComponent();
+            editEmployee = true;
+            SubDivRecords = new ObservableCollection<SubDivision>();
+            PreviosLoadData(empId, subDivId);
 
-            
-            
-            
-           this.Text = "Режим редактирования данных по сотруднику";
+            //SetDefaultControls();
+
+            this.Text = "Режим редактирования данных по сотруднику";
             checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
         }
         SubDivision SelectedSubDivision { get; set; }
         Employee SelectedEmployee { get; set; }
         ObservableCollection<SubDivision> SubDivRecords;
-        
+        bool editEmployee = false;
 
         private void SaveNewEmployeeData()
         {
@@ -86,14 +89,12 @@ namespace TestApp
 
                     // //get need employee after adding to DB.  Because there is an option that 
                     // //it must have it own Id. 
-                    // //Perhaps it was possible to do without this
+                    // //Perhaps it was possible to do without this                    
 
-                    //// SelectedEmployee = db.Employees.Where(e => e.TabNumber == SelectedEmployee.TabNumber).FirstOrDefault(); 
-                    
                     //нижний огород пришлось городить от того, что ентити с какого-то хрена не желает искать по строкам...
                     //ппц какой-то
                     //get just now added employee from DB, but now hi hes an Id 
-                    List<Employee> Employees = db.Employees.ToList();                    
+                    List<Employee> Employees = db.Employees.ToList();
                     foreach (Employee item in Employees)
                     {
                         if (item.TabNumber == SelectedEmployee.TabNumber)
@@ -107,7 +108,7 @@ namespace TestApp
                         MessageBox.Show("Что-то с сохранение пошло не так....");
                         return;
                     }
-                    
+
                     empSabDiv.EmpSubDivision_Id = SelectedSubDivision.Id;
                     empSabDiv.Position = textBox_EmpPosition.Text;
                     empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;                    
@@ -144,6 +145,11 @@ namespace TestApp
         private void PreviosLoadData(int subId)
         {
             SelectedEmployee = new Employee();
+            SubDivRecordsFill(subId);
+        }
+
+        private void SubDivRecordsFill(int subId)
+        {
             SubDivRecords.Clear();
             using (DBConteiner db = new DBConteiner())
             {
@@ -165,7 +171,7 @@ namespace TestApp
                             CreateDate = item.CreateDate
                         });
                     }
-                    SelectedSubDivision =SubDivRecords.Where(e=>e.Id== subId).FirstOrDefault();                
+                    SelectedSubDivision = SubDivRecords.Where(e => e.Id == subId).FirstOrDefault();
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -188,17 +194,20 @@ namespace TestApp
                     MessageBox.Show(ex.Message);
                 }
             }
-
         }
 
         //for edit operations
         private void PreviosLoadData(int empId, int subId)
         {
+            
+            SubDivRecordsFill(subId);
+            ShowEmpSubDivs(empId);
+
             using (DBConteiner db = new DBConteiner())
             {
                 try
                 {
-                                   
+                    SelectedEmployee = db.Employees.Where(e => e.Id == empId).FirstOrDefault();           
 
                 }
                 catch (ArgumentNullException ex)
@@ -225,8 +234,20 @@ namespace TestApp
 
         }
 
-
+        //for add new employee
         private void SetDefaultControls()
+        {
+            dateTimePicker_FireDate.Enabled = false;
+            richTextBox1.Enabled = false;
+            textBox_TabNumber.Text = TabNumberFill();
+
+            comboBox_SubDivisionsList.DataSource = SubDivRecords;
+            comboBox_SubDivisionsList.DisplayMember = "SubDivName";
+            comboBox_SubDivisionsList.ValueMember = "Id";
+            comboBox_SubDivisionsList.SelectedItem = SelectedSubDivision;
+        }
+
+        private void SetDefaultControlsEditEmployee()
         {
             dateTimePicker_FireDate.Enabled = false;
             richTextBox1.Enabled = false;
@@ -243,10 +264,19 @@ namespace TestApp
             //1. here we check all fields validation
             if (!EmpDataValidation())
                 return;
-            SaveNewEmployeeData();
-            //2. Вносим запись в БД
-            //3. сразу отображаем информацию о подразделении и должности сотрудника в нужном поле формы
-            ShowEmpSubDivs(SelectedEmployee.Id);
+
+            //2. Add new entrie to DB
+            if (!editEmployee)
+            {
+                SaveNewEmployeeData();
+                SetDefaultControls();
+            }
+
+            if (editEmployee)
+            {
+
+                ShowEmpSubDivs(SelectedEmployee.Id);
+            }
 
 
 

@@ -39,9 +39,9 @@
             this.SubDivName_txtBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.CancelSubDivBtn = new System.Windows.Forms.Button();
             this.SaveSubDivBtn = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -147,6 +147,15 @@
             this.panel3.Size = new System.Drawing.Size(781, 48);
             this.panel3.TabIndex = 7;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(283, 16);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(160, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Статус подразделения";
+            // 
             // CancelSubDivBtn
             // 
             this.CancelSubDivBtn.BackColor = System.Drawing.Color.Red;
@@ -168,15 +177,6 @@
             this.SaveSubDivBtn.Text = "Сохранить";
             this.SaveSubDivBtn.UseVisualStyleBackColor = false;
             this.SaveSubDivBtn.Click += new System.EventHandler(this.SaveSubDivBtn_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(283, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(160, 17);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Статус подразделения";
             // 
             // SubDivForm
             // 
