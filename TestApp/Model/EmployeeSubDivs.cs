@@ -13,14 +13,12 @@ namespace TestApp.Model
         {
             TransferDate = DateTime.Now;
             Position = "";
-            SubDivName = "";
-            //SubDivisions = new ObservableCollection<SubDivision>();
+            SubDivName = "";            
         }
-        //[Key]
-        //public int EmployeeSubDivs_Id { get; set; }
 
+        [Key]
         
-        public int Id { get; set; }
+        public int EmployeeSubDivsId { get; set; }  
 
         [Column(TypeName = "datetime2")]
         public DateTime TransferDate { get; set; }
@@ -29,13 +27,10 @@ namespace TestApp.Model
         [MaxLength(100)]
         public string Position { get; set; }
 
-       // [NotMapped]
-        public int EmpSubDivision_Id { get; set; }
-
         [NotMapped]
         public string SubDivName { get; set; }
 
-        public virtual Employee Employee { get; set; }
-       // public virtual ObservableCollection <SubDivision >SubDivisions { get; set; }
+        public virtual Employee Employee { get; set; }        
+        public virtual SubDivision SubDivision { get; set; }
     }
 }

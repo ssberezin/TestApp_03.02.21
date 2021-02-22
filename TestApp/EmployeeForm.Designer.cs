@@ -222,6 +222,7 @@
             this.comboBox_SubDivisionsList.Name = "comboBox_SubDivisionsList";
             this.comboBox_SubDivisionsList.Size = new System.Drawing.Size(610, 24);
             this.comboBox_SubDivisionsList.TabIndex = 13;
+            this.comboBox_SubDivisionsList.SelectedIndexChanged += new System.EventHandler(this.comboBox_SubDivisionsList_SelectedIndexChanged);
             // 
             // button_SaveEmpData
             // 

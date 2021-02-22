@@ -13,21 +13,22 @@ namespace TestApp.Model
             this.CollapsDate = DateTime.Now; 
             this.CreateDate = DateTime.Now;
             this.SubDivName = "";
-            this.ParentId = 1;
+            this.ParentIdent = 1;
             this.WorkStatus = true;
             this.Employees = new ObservableCollection<Employee>();
+           // this.EmployeeSubDivs = new ObservableCollection<EmployeeSubDivs>();
         }
-        //[Key]
-        //public int SubDivision_Id { get; set; }
-
+          [Key]
         
-        public int Id { get; set; }
+        
+        public int SubDivisionId { get; set; }
+        
 
         [Column("SubDivName", TypeName = "ntext")]
         [MaxLength(500)]
         public string SubDivName { get; set; }
 
-        public int ParentId { get; set; }
+        public int ParentIdent { get; set; }
 
         public bool WorkStatus { get; set; }
 
@@ -38,7 +39,7 @@ namespace TestApp.Model
         public DateTime CollapsDate { get; set; }
 
         public virtual ObservableCollection<Employee> Employees { get; set; }
-       // public virtual EmployeeSubDivs EmployeeSubDiv { get; set; }
+        public virtual ObservableCollection<EmployeeSubDivs> EmployeeSubDivs { get; set; }
 
     }
 }

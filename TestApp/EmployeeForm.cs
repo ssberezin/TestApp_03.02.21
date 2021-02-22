@@ -15,6 +15,7 @@ namespace TestApp
 {
     public partial class EmployeeForm : Form
     {
+
         //for add new employee
         public EmployeeForm(int subDivId)
         {
@@ -25,6 +26,7 @@ namespace TestApp
             SetDefaultControls();
             this.Text = "Режим оформления нового сотрудника";
             checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
+            comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
         }
 
         //for edit imployee
@@ -34,13 +36,13 @@ namespace TestApp
             editEmployee = true;
             SubDivRecords = new ObservableCollection<SubDivision>();
             PreviosLoadData(empId, subDivId);
-
-            //SetDefaultControls();
-
+            SetDefaultControlsEditEmployee();
             this.Text = "Режим редактирования данных по сотруднику";
             checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
+            comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
         }
         SubDivision SelectedSubDivision { get; set; }
+        SubDivision TransferSubDivision { get; set; }
         Employee SelectedEmployee { get; set; }
         ObservableCollection<SubDivision> SubDivRecords;
         bool editEmployee = false;
@@ -51,6 +53,12 @@ namespace TestApp
             {
                 try
                 {
+
+                    if (editEmployee)
+                        SelectedEmployee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
+                    //else
+                    //    db.Employees.Attach(SelectedEmployee);
+
                     EmployeeSubDivs empSabDiv = new EmployeeSubDivs();
 
                     SelectedEmployee.EmpName = textBox_Name.Text;
@@ -62,7 +70,7 @@ namespace TestApp
                         SelectedEmployee.sex = false;
                     SelectedEmployee.DateBirth = dateTimePicker_BirthDate.Value;
                     SelectedEmployee.BirthPlace = richTextBox_BirthPlace.Text;
-                    SelectedEmployee.INN = textBox_INN.Text;
+                    SelectedEmployee.INN = textBox_INN.Text;                    
                     SelectedEmployee.TabNumber = textBox_TabNumber.Text;
                     SelectedEmployee.StartDateWork = dateTimePicker_StartDateWork.Value;
                     if (checkBox_Fired.Checked)
@@ -70,49 +78,23 @@ namespace TestApp
                         SelectedEmployee.FireDate = dateTimePicker_FireDate.Value;
                         SelectedEmployee.FireReason = richTextBox1.Text;
                     }
-                    //SelectedEmployee.SubDivision = SelectedSubDivision;//эта хрень работает не корректно
-                    //если оставить ее как есть, то добавляет новое подразделение
-                    //есть мнение, что нужно реализовать механизм клонирования.
-                    //возможно, что не происходит глубокое копирование при таком подходе
-                    //пришлось лезть в БД за тем, что по сути у нас уже есть (
-                    SelectedEmployee.SubDivision = db.SubDivisions.Where(e => e.Id == SelectedSubDivision.Id).FirstOrDefault();
                     
 
-                    //без этих фич не хочет корректно добавлять запись в БД
-                    //хотя в MainForm.cs , если посмотреть в строки 89 и 88 , то видим, что все ок и все добавляется
-                    //без этих кастылей...
-                    db.Configuration.AutoDetectChangesEnabled = false;
-                    db.Configuration.ValidateOnSaveEnabled = false;
+                    SelectedEmployee.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == SelectedSubDivision.SubDivisionId).FirstOrDefault();
+                    //db.Configuration.AutoDetectChangesEnabled = false;
+                    //db.Configuration.ValidateOnSaveEnabled = false;
                     db.Employees.Add(SelectedEmployee);
+                  
+                    if (editEmployee)                
+                        db.Entry(SelectedEmployee).State = EntityState.Modified;                       
+                    else                     
+                        db.Employees.Add(SelectedEmployee);
 
-                    db.SaveChanges();
 
-                    // //get need employee after adding to DB.  Because there is an option that 
-                    // //it must have it own Id. 
-                    // //Perhaps it was possible to do without this                    
-
-                    //нижний огород пришлось городить от того, что ентити с какого-то хрена не желает искать по строкам...
-                    //ппц какой-то
-                    //get just now added employee from DB, but now hi hes an Id 
-                    List<Employee> Employees = db.Employees.ToList();
-                    foreach (Employee item in Employees)
-                    {
-                        if (item.TabNumber == SelectedEmployee.TabNumber)
-                        {
-                            SelectedSubDivision.Id = item.SubDivision.Id;
-                            break;
-                        }
-                    }
-                    if (SelectedSubDivision.Id == 0)
-                    {
-                        MessageBox.Show("Что-то с сохранение пошло не так....");
-                        return;
-                    }
-
-                    empSabDiv.EmpSubDivision_Id = SelectedSubDivision.Id;
+                    empSabDiv.SubDivision = SelectedSubDivision;
                     empSabDiv.Position = textBox_EmpPosition.Text;
                     empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;                    
-                    empSabDiv.Employee = db.Employees.Where(e => e.Id == SelectedEmployee.Id).FirstOrDefault();
+                    empSabDiv.Employee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
                     db.EmployeeSubDivisions.Add(empSabDiv);
 
                     db.SaveChanges();
@@ -159,19 +141,20 @@ namespace TestApp
                     var list = db.SubDivisions.ToList<SubDivision>();
                     foreach (var item in list)
                     {
-                        if (item.Id == 1)
+                        if (item.SubDivisionId == 1)
                             continue;
                         SubDivRecords.Add(
                         new SubDivision
                         {
-                            Id = item.Id,
+                            SubDivisionId = item.SubDivisionId,
                             SubDivName = item.SubDivName,
-                            ParentId = item.ParentId,
+                            ParentIdent = item.ParentIdent,
                             CollapsDate = item.CollapsDate,
                             CreateDate = item.CreateDate
                         });
                     }
-                    SelectedSubDivision = SubDivRecords.Where(e => e.Id == subId).FirstOrDefault();
+                    SelectedSubDivision = SubDivRecords.Where(e => e.SubDivisionId == subId).FirstOrDefault();
+                    TransferSubDivision = SelectedSubDivision;
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -207,7 +190,7 @@ namespace TestApp
             {
                 try
                 {
-                    SelectedEmployee = db.Employees.Where(e => e.Id == empId).FirstOrDefault();           
+                    SelectedEmployee = db.Employees.Where(e => e.EmployeeId == empId).FirstOrDefault();           
 
                 }
                 catch (ArgumentNullException ex)
@@ -237,26 +220,92 @@ namespace TestApp
         //for add new employee
         private void SetDefaultControls()
         {
+
             dateTimePicker_FireDate.Enabled = false;
             richTextBox1.Enabled = false;
             textBox_TabNumber.Text = TabNumberFill();
 
+            SubDivRecords = new ObservableCollection<SubDivision>(SubDivRecords.OrderBy(e => e.SubDivName));
+            comboBox_SubDivisionsList.DataSource = null;
             comboBox_SubDivisionsList.DataSource = SubDivRecords;
             comboBox_SubDivisionsList.DisplayMember = "SubDivName";
-            comboBox_SubDivisionsList.ValueMember = "Id";
+            comboBox_SubDivisionsList.ValueMember = "SubDivisionId";
             comboBox_SubDivisionsList.SelectedItem = SelectedSubDivision;
         }
 
+        //for edit employee data
         private void SetDefaultControlsEditEmployee()
         {
-            dateTimePicker_FireDate.Enabled = false;
-            richTextBox1.Enabled = false;
-            textBox_TabNumber.Text = TabNumberFill();
+            textBox_Surname.Text = SelectedEmployee.EmpSurName;
+            textBox_Name.Text = SelectedEmployee.EmpName;
+            textBox_Patronimic.Text = SelectedEmployee.EmpPatronimic;
+            textBox_TabNumber.Text = SelectedEmployee.TabNumber;
+            if (SelectedEmployee.sex)
+                radioButton_male.Checked = true;
+            else
+                radioButton_female.Checked = true;
+            dateTimePicker_BirthDate.Value = SelectedEmployee.DateBirth;
+            textBox_INN.Text = SelectedEmployee.INN;
+            dateTimePicker_StartDateWork.Value = SelectedEmployee.StartDateWork;
 
+            if (SelectedEmployee.FireDate == new DateTime(2050, 1, 1))
+            {
+                dateTimePicker_FireDate.Enabled = false;
+                richTextBox1.Enabled = false;
+            }
+            else
+            {
+                dateTimePicker_FireDate.Value = SelectedEmployee.FireDate;
+                richTextBox1.Enabled = true;
+                richTextBox1.Text = SelectedEmployee.FireReason;
+                checkBox_Fired.Checked = true;
+            }
+
+            richTextBox_BirthPlace.Text = SelectedEmployee.BirthPlace;
+            textBox_EmpPosition.Text = GetEmployeePosition(SelectedEmployee.EmployeeId);
+
+            SubDivRecords = new ObservableCollection<SubDivision>(SubDivRecords.OrderBy(e => e.SubDivName));
+            comboBox_SubDivisionsList.DataSource = null;
             comboBox_SubDivisionsList.DataSource = SubDivRecords;
+            SelectedSubDivision = TransferSubDivision;
             comboBox_SubDivisionsList.DisplayMember = "SubDivName";
-            comboBox_SubDivisionsList.ValueMember = "Id";
+            comboBox_SubDivisionsList.ValueMember = "SubDivisionId";
             comboBox_SubDivisionsList.SelectedItem = SelectedSubDivision;
+        }
+
+        private string GetEmployeePosition(int empId)
+        {
+            using (DBConteiner db = new DBConteiner())
+            {
+                try
+                {
+                    //EmployeeSubDivs emp = db.EmployeeSubDivisions.Where(e => e.Employee.Id == empId).FirstOrDefault();
+                    EmployeeSubDivs emp = db.EmployeeSubDivisions.Find(new EmployeeSubDivs() { EmployeeSubDivsId = empId }.EmployeeSubDivsId);
+                    return emp.Position;
+
+                }
+                catch (ArgumentNullException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (OverflowException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                catch (System.Data.Entity.Core.EntityException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            return null;
         }
 
         private void button_SaveEmpData_Click(object sender, EventArgs e)
@@ -274,8 +323,8 @@ namespace TestApp
 
             if (editEmployee)
             {
-
-                ShowEmpSubDivs(SelectedEmployee.Id);
+                SaveNewEmployeeData();
+                ShowEmpSubDivs(SelectedEmployee.EmployeeId);
             }
 
 
@@ -292,10 +341,10 @@ namespace TestApp
                     dataGridView1.Rows.Clear();
                     dataGridView1.Columns.Clear();
                     dataGridView1.Refresh();
-                    List<EmployeeSubDivs> list = db.EmployeeSubDivisions.Where(e => e.Employee.Id == empId).ToList();
+                    List<EmployeeSubDivs> list = db.EmployeeSubDivisions.Where(e => e.Employee.EmployeeId == empId).ToList();
                     foreach (var item in list)
                     {
-                        item.SubDivName = db.SubDivisions.Where(e => e.Id == item.EmpSubDivision_Id).FirstOrDefault().SubDivName;
+                        item.SubDivName = db.SubDivisions.Where(e => e.SubDivisionId == item.SubDivision.SubDivisionId).FirstOrDefault().SubDivName;
                     }
                     var source = new BindingSource(list, null);
                     dataGridView1.DataSource = source;
@@ -329,8 +378,9 @@ namespace TestApp
         private void DataGreedViewUpdate(List<EmployeeSubDivs> empList)
         {
            
-            dataGridView1.Columns["Id"].Visible = false;
-            dataGridView1.Columns["EmpSubDivision_Id"].Visible = false;
+           // dataGridView1.Columns["EmpSubDivisionId"].Visible = false;
+            //dataGridView1.Columns["EmpSubDivision_Id"].Visible = false;
+            dataGridView1.Columns["SubDivision"].Visible = false;
             dataGridView1.Columns["Employee"].Visible = false;
 
             dataGridView1.Columns["SubDivName"].DisplayIndex = 0;
@@ -391,6 +441,13 @@ namespace TestApp
             if (dateTimePicker_StartDateWork.Value < SelectedSubDivision.CreateDate)
             {
                 MessageBox.Show("Дата устройства наработу не может быть более раней, чем дата основания подразделения");
+                return false;
+            }
+            if (editEmployee && (dateTimePicker_StartDateWork.Value <= SelectedEmployee.StartDateWork||
+                dateTimePicker_StartDateWork.Value>=DateTime.Now.AddDays(1)))
+            {
+                MessageBox.Show("Дата трансфера не может быть более раней, чем дата устройста на работу\n " +
+                    "в предыдущем подразделении. Или будущей датой.");
                 return false;
             }
 
@@ -483,5 +540,12 @@ namespace TestApp
             return false;
 
         }
+
+        private void comboBox_SubDivisionsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedSubDivision = (SubDivision)comboBox_SubDivisionsList.SelectedItem;
+        }
+
+        
     }
 }

@@ -27,11 +27,9 @@ namespace TestApp.Model
 
             this.EmployeeSubDivisions = new ObservableCollection<EmployeeSubDivs>();
         }
-        //[Key]
-        //public int Employee_Id { get; set; }
-
-        
-        public int Id { get; set; }
+        [Key]
+    
+        public int EmployeeId { get; set; }
 
         [Column("TabNumber", TypeName = "ntext")]
         [MaxLength(4)]
@@ -74,7 +72,7 @@ namespace TestApp.Model
         [MaxLength(500)]
         public string FireReason { get; set; }
 
-
+        
         public virtual SubDivision SubDivision { get; set; }
         public virtual ObservableCollection<EmployeeSubDivs> EmployeeSubDivisions { get; set; }
     }

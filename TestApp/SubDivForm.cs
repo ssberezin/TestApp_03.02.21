@@ -64,13 +64,13 @@ namespace TestApp
             ParentSubDiv_comboBox.DataSource = DivRecords;
             
             ParentSubDiv_comboBox.DisplayMember = "SubDivName";
-            ParentSubDiv_comboBox.ValueMember = "Id";
+            ParentSubDiv_comboBox.ValueMember = "SubDivisionId";
             if (NewdSubDivivsion.WorkStatus)
                 dateTimePicker2.Visible = false;
 
             if (newSubDivSet)
             {  
-                ParentSubDiv_comboBox.SelectedItem = DivRecords.Where(e => e.Id == 1).FirstOrDefault();               
+                ParentSubDiv_comboBox.SelectedItem = DivRecords.Where(e => e.SubDivisionId == 1).FirstOrDefault();               
                 dateTimePicker1.Value = NewdSubDivivsion.CreateDate;               
                 SubDivName_txtBox.Text = "";
                 return;
@@ -88,7 +88,7 @@ namespace TestApp
                 label4.Font = new Font(label4.Font, label4.Font.Style | FontStyle.Bold);
             }
 
-            ParentSubDiv_comboBox.SelectedItem = DivRecords.Where(e => e.Id == SelectedSubDivivsion.ParentId).FirstOrDefault();
+            ParentSubDiv_comboBox.SelectedItem = DivRecords.Where(e => e.SubDivisionId == SelectedSubDivivsion.ParentIdent).FirstOrDefault();
 
         }
 
@@ -100,7 +100,7 @@ namespace TestApp
             {
                 try
                 {
-                    SelectedSubDivivsion = db.SubDivisions.Where(e => e.Id == subDiv.ParentId).FirstOrDefault();
+                    SelectedSubDivivsion = db.SubDivisions.Where(e => e.SubDivisionId == subDiv.ParentIdent).FirstOrDefault();
                     ParentSubDiv_comboBox.SelectedItem = SelectedSubDivivsion;
                     dateTimePicker1.Value = subDiv.CreateDate;
                     checkBox1.Checked = false;
@@ -146,9 +146,9 @@ namespace TestApp
                         DivRecords.Add(
                         new SubDivision
                         {
-                            Id = item.Id,
+                            SubDivisionId = item.SubDivisionId,
                             SubDivName = item.SubDivName,
-                            ParentId=item.ParentId,
+                            ParentIdent = item.ParentIdent,
                             CollapsDate=item.CollapsDate,
                             CreateDate=item.CreateDate
                         });
@@ -202,7 +202,7 @@ namespace TestApp
         {
 
             NewdSubDivivsion.SubDivName = SubDivName_txtBox.Text;
-            NewdSubDivivsion.ParentId = SelectedSubDivivsion.Id;
+            NewdSubDivivsion.ParentIdent = SelectedSubDivivsion.SubDivisionId;
             NewdSubDivivsion.CreateDate = dateTimePicker1.Value;
             NewdSubDivivsion.CollapsDate = dateTimePicker2.Value;
             Library lib = new Library();
@@ -214,6 +214,7 @@ namespace TestApp
                 {
                     db.SubDivisions.Add(NewdSubDivivsion);
                     db.SaveChanges();
+                    MessageBox.Show("Данные о подразделении сохранены");
                     ParentSubDiv_comboBox.DataSource = null;
                     //DivRecords.Clear();
                     PreviosDataLoad();//update ParentSubDiv_comboBox content 
@@ -253,14 +254,14 @@ namespace TestApp
                     if (!lib.NewSubDivValidstion(SelectedSubDivivsion))
                         return;
 
-                    SubDivision tmp = db.SubDivisions.Where(o=>o.Id==NewdSubDivivsion.Id).FirstOrDefault();
+                    SubDivision tmp = db.SubDivisions.Where(o=>o.SubDivisionId == NewdSubDivivsion.SubDivisionId).FirstOrDefault();
                     
                     if (tmp != null)
                     {
                         db.Entry(tmp).State = EntityState.Modified;
 
                         tmp.SubDivName = SubDivName_txtBox.Text;                        
-                        tmp.ParentId = SelectedSubDivivsion.Id;
+                        tmp.ParentIdent = SelectedSubDivivsion.SubDivisionId;
                         tmp.CreateDate = dateTimePicker1.Value;
                         tmp.CollapsDate = dateTimePicker2.Value;
 
@@ -310,7 +311,7 @@ namespace TestApp
                 try
                 {
                     SubDivName_txtBox.Enabled = false;                    
-                    SubDivision CloseSubdiv = db.SubDivisions.Where(o => o.Id == NewdSubDivivsion.Id).FirstOrDefault();
+                    SubDivision CloseSubdiv = db.SubDivisions.Where(o => o.SubDivisionId == NewdSubDivivsion.SubDivisionId).FirstOrDefault();
                     if (CloseSubdiv != null)
                     {
                         db.Entry(CloseSubdiv).State = EntityState.Modified;
@@ -318,12 +319,12 @@ namespace TestApp
                         CloseSubdiv.WorkStatus = false;
                         //here we change the status of parent subdivision in all of subdivision which have a parent subdivision 
                         //that we close now. New status of these subdivision is "No patent sabdivision"
-                        List<SubDivision> subDivisions = db.SubDivisions.Where(e => e.ParentId == NewdSubDivivsion.Id).ToList();
+                        List<SubDivision> subDivisions = db.SubDivisions.Where(e => e.ParentIdent == NewdSubDivivsion.SubDivisionId).ToList();
                         if (subDivisions!=null)
                         foreach (SubDivision sub in subDivisions)
                         {
                                 db.Entry(sub).State = EntityState.Modified;
-                                sub.ParentId = 1;
+                                sub.ParentIdent = 1;
                         }
                         db.SaveChanges();
                         NewdSubDivivsion.WorkStatus = false;//for corret showing infomation by label4 (Work ort Don't work)
