@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,15 +12,12 @@ namespace TestApp.Model
         public SubDivision()
         {
             this.CollapsDate = DateTime.Now; 
-            this.CreateDate = DateTime.Now;
-            this.SubDivName = "";
-            this.ParentIdent = 1;
+            this.CreateDate = DateTime.Now;         
             this.WorkStatus = true;
-            this.Employees = new ObservableCollection<Employee>();
-           // this.EmployeeSubDivs = new ObservableCollection<EmployeeSubDivs>();
+            EmployeeSubDivisions  = new HashSet <EmployeeSubDivs>();
+            ChildSubdivs = new HashSet<SubDivision>();
         }
-          [Key]
-        
+        [Key]       
         
         public int SubDivisionId { get; set; }
         
@@ -28,8 +26,10 @@ namespace TestApp.Model
         [MaxLength(500)]
         public string SubDivName { get; set; }
 
-        public int ParentIdent { get; set; }
+        [ForeignKey ("ParentSubdiv")]
+        public int? ParentIdent { get; set; }
 
+        public SubDivision ParentSubdiv { get; set; }
         public bool WorkStatus { get; set; }
 
         [Column(TypeName = "datetime2")]
@@ -38,8 +38,8 @@ namespace TestApp.Model
         [Column(TypeName = "datetime2")]
         public DateTime CollapsDate { get; set; }
 
-        public virtual ObservableCollection<Employee> Employees { get; set; }
-        public virtual ObservableCollection<EmployeeSubDivs> EmployeeSubDivs { get; set; }
+        public virtual ICollection <EmployeeSubDivs> EmployeeSubDivisions { get; set; }
+        public virtual ICollection <SubDivision> ChildSubdivs { get; set; }
 
     }
 }

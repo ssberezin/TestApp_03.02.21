@@ -13,7 +13,7 @@ namespace TestApp.Model
         {
             TransferDate = DateTime.Now;
             Position = "";
-            SubDivName = "";            
+            //SubDivName = "";            
         }
 
         [Key]
@@ -27,8 +27,10 @@ namespace TestApp.Model
         [MaxLength(100)]
         public string Position { get; set; }
 
-        [NotMapped]
-        public string SubDivName { get; set; }
+        [ForeignKey("Employee")]
+        public int EmployeeId { get; set; }
+        [ForeignKey("SubDivision")]
+        public int SubDivisionId { get; set; }
 
         public virtual Employee Employee { get; set; }        
         public virtual SubDivision SubDivision { get; set; }

@@ -82,218 +82,218 @@ namespace TestApp
         //for previos fill SubDivisions combobox  
         private void FillSubDivsList()
         {
-            using (DBConteiner db = new DBConteiner())
-            {
-                try
-                {
-                    if (db.SubDivisions.Count() == 0)
-                    {
-                        db.SubDivisions.Add(new SubDivision { SubDivName = "Нет родительского подразделения" });
-                        db.SubDivisions.Add(new SubDivision { SubDivName = "АМКР", CreateDate = new DateTime(1937, 1,10) });
-                        db.SubDivisions.Add(new SubDivision { SubDivName = "ЦГОК", CreateDate = new DateTime(1948, 3, 8) });
-                        db.SubDivisions.Add(new SubDivision { SubDivName = "КЖРК", CreateDate = new DateTime(1958, 8, 16) });
-                        db.SubDivisions.Add(new SubDivision { SubDivName = "ИНГОК", CreateDate = new DateTime(1955, 12, 9) });
-                        db.SubDivisions.Add(new SubDivision { SubDivName = "Метинвест", CreateDate = new DateTime(2000, 5, 15) });
-                        db.SaveChanges();
-                    }
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (OverflowException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.SqlClient.SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.Entity.Core.EntityException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            //using (DBConteiner db = new DBConteiner())
+            //{
+            //    try
+            //    {
+            //        //if (db.SubDivisions.Count() == 0)
+            //        //{
+            //        //    db.SubDivisions.Add(new SubDivision { SubDivName = "Нет родительского подразделения" });
+            //        //    db.SubDivisions.Add(new SubDivision { SubDivName = "АМКР", CreateDate = new DateTime(1937, 1,10) });
+            //        //    db.SubDivisions.Add(new SubDivision { SubDivName = "ЦГОК", CreateDate = new DateTime(1948, 3, 8) });
+            //        //    db.SubDivisions.Add(new SubDivision { SubDivName = "КЖРК", CreateDate = new DateTime(1958, 8, 16) });
+            //        //    db.SubDivisions.Add(new SubDivision { SubDivName = "ИНГОК", CreateDate = new DateTime(1955, 12, 9) });
+            //        //    db.SubDivisions.Add(new SubDivision { SubDivName = "Метинвест", CreateDate = new DateTime(2000, 5, 15) });
+            //        //    db.SaveChanges();
+            //        //}
+            //    }
+            //    catch (ArgumentNullException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (OverflowException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.SqlClient.SqlException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.Entity.Core.EntityException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
 
         //for previos DB fill 
         private void AddEmployeesToDB()
         {
-            using (DBConteiner db = new DBConteiner())
-            {
-                try
-                {
-                    if (db.Employees.Count() == 0)
-                    {
-                        Employee worker1 = new Employee
-                        {
-                            EmpName = "Иван",
-                            EmpSurName = "Петров",
-                            EmpPatronimic = "Эдуардович",
-                            TabNumber = "1254523OL",
-                            DateBirth = new DateTime(1981, 1, 10),
-                            StartDateWork = new DateTime(2020, 6, 1),
-                            BirthPlace = "Украина, г.Киев",
-                            INN = "2058746322"
-                        };
+            //using (DBConteiner db = new DBConteiner())
+            //{
+            //    try
+            //    {
+            //        //if (db.Employees.Count() == 0)
+            //        //{
+            //        //    Employee worker1 = new Employee
+            //        //    {
+            //        //        EmpName = "Иван",
+            //        //        EmpSurName = "Петров",
+            //        //        EmpPatronimic = "Эдуардович",
+            //        //        TabNumber = "1254523OL",
+            //        //        DateBirth = new DateTime(1981, 1, 10),
+            //        //        StartDateWork = new DateTime(2020, 6, 1),
+            //        //        BirthPlace = "Украина, г.Киев",
+            //        //        INN = "2058746322"
+            //        //    };
 
-                        worker1.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
+            //        //    worker1.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
 
-                        db.Employees.Add(worker1);
+            //        //    db.Employees.Add(worker1);
 
-                        Employee worker2 = new Employee
-                        {
-                            EmpName = "Максим",
-                            EmpSurName = "Сидоров",
-                            EmpPatronimic = "Иванович",
-                            TabNumber = "52545965K",
-                            DateBirth = new DateTime(1984, 1, 11),
-                            StartDateWork = new DateTime (2021,2,1),
-                            BirthPlace = "Украина, г.Днепр",
-                            INN = "5158746330"
-                        };
-                        worker2.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
-                        db.Employees.Add(worker2);
+            //        //    Employee worker2 = new Employee
+            //        //    {
+            //        //        EmpName = "Максим",
+            //        //        EmpSurName = "Сидоров",
+            //        //        EmpPatronimic = "Иванович",
+            //        //        TabNumber = "52545965K",
+            //        //        DateBirth = new DateTime(1984, 1, 11),
+            //        //        StartDateWork = new DateTime (2021,2,1),
+            //        //        BirthPlace = "Украина, г.Днепр",
+            //        //        INN = "5158746330"
+            //        //    };
+            //        //    worker2.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
+            //        //    db.Employees.Add(worker2);
 
-                        Employee worker3 = new Employee
-                        {
-                            EmpName = "Павел",
-                            EmpSurName = "Жорин",
-                            EmpPatronimic = "Прус",
-                            TabNumber = "6524E52521",
-                            DateBirth = new DateTime(1976, 3, 9),
-                            StartDateWork = new DateTime(2020, 3, 5),
-                            BirthPlace = "Украина, г.Харьков",
-                            INN = "855885230"
-                        };
-                        worker3.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
-                        db.Employees.Add(worker3);
+            //        //    Employee worker3 = new Employee
+            //        //    {
+            //        //        EmpName = "Павел",
+            //        //        EmpSurName = "Жорин",
+            //        //        EmpPatronimic = "Прус",
+            //        //        TabNumber = "6524E52521",
+            //        //        DateBirth = new DateTime(1976, 3, 9),
+            //        //        StartDateWork = new DateTime(2020, 3, 5),
+            //        //        BirthPlace = "Украина, г.Харьков",
+            //        //        INN = "855885230"
+            //        //    };
+            //        //    worker3.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
+            //        //    db.Employees.Add(worker3);
 
-                        Employee worker4 = new Employee
-                        {
-                            EmpName = "Жанна",
-                            EmpSurName = "Петрова",
-                            EmpPatronimic = "Кирилловна",
-                            TabNumber = "9564E552H",
-                            DateBirth = new DateTime(1981, 9, 4),
-                            StartDateWork = new DateTime(2019, 3, 4),
-                            BirthPlace = "Украина, г.Донецк",
-                            INN = "8962446741",
-                            sex = false
+            //        //    Employee worker4 = new Employee
+            //        //    {
+            //        //        EmpName = "Жанна",
+            //        //        EmpSurName = "Петрова",
+            //        //        EmpPatronimic = "Кирилловна",
+            //        //        TabNumber = "9564E552H",
+            //        //        DateBirth = new DateTime(1981, 9, 4),
+            //        //        StartDateWork = new DateTime(2019, 3, 4),
+            //        //        BirthPlace = "Украина, г.Донецк",
+            //        //        INN = "8962446741",
+            //        //        sex = false
 
-                        };
-                        worker4.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
-                        db.Employees.Add(worker4);
-                        db.Configuration.AutoDetectChangesEnabled = false;
-                        db.Configuration.ValidateOnSaveEnabled = false;
-                        db.SaveChanges();
-                    }
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (OverflowException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.SqlClient.SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.Entity.Core.EntityException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            //        //    };
+            //        //    worker4.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
+            //        //    db.Employees.Add(worker4);
+            //        //    db.Configuration.AutoDetectChangesEnabled = false;
+            //        //    db.Configuration.ValidateOnSaveEnabled = false;
+            //        //    db.SaveChanges();
+            //        //}
+            //    }
+            //    catch (ArgumentNullException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (OverflowException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.SqlClient.SqlException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.Entity.Core.EntityException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
 
        //for previos DB fill 
         private void AddEmployeeSubdivsToDB()
         {
-            using (DBConteiner db = new DBConteiner())
-            {
-                try
-                {
-                    if (db.EmployeeSubDivisions.Count() == 0)
-                    {
+            //using (DBConteiner db = new DBConteiner())
+            //{
+            //    try
+            //    {
+            //        //if (db.EmployeeSubDivisions.Count() == 0)
+            //        //{
 
-                        EmployeeSubDivs empSD1 = new EmployeeSubDivs
-                        {
-                            Position = "программист",
-                            TransferDate = db.Employees.Where(e => e.EmployeeId == 1).FirstOrDefault().StartDateWork,
+            //        //    EmployeeSubDivs empSD1 = new EmployeeSubDivs
+            //        //    {
+            //        //        Position = "программист",
+            //        //        TransferDate = db.Employees.Where(e => e.EmployeeId == 1).FirstOrDefault().StartDateWork,
                             
-                            Employee = db.Employees.Where(e => e.EmployeeId == 1).FirstOrDefault()
-                        };
-                        empSD1.SubDivision = db.SubDivisions.Where(e=>e.SubDivisionId == 5).FirstOrDefault();
-                        db.EmployeeSubDivisions.Add(empSD1);
+            //        //        Employee = db.Employees.Where(e => e.EmployeeId == 1).FirstOrDefault()
+            //        //    };
+            //        //    empSD1.SubDivision = db.SubDivisions.Where(e=>e.SubDivisionId == 5).FirstOrDefault();
+            //        //    db.EmployeeSubDivisions.Add(empSD1);
 
-                        EmployeeSubDivs empSD2 = new EmployeeSubDivs
-                        {
-                            Position = "программист",
-                            TransferDate = db.Employees.Where(e => e.EmployeeId == 2).FirstOrDefault().StartDateWork,
+            //        //    EmployeeSubDivs empSD2 = new EmployeeSubDivs
+            //        //    {
+            //        //        Position = "программист",
+            //        //        TransferDate = db.Employees.Where(e => e.EmployeeId == 2).FirstOrDefault().StartDateWork,
                        
-                            Employee = db.Employees.Where(e => e.EmployeeId == 2).FirstOrDefault()
-                        };
-                        empSD2.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
-                        db.EmployeeSubDivisions.Add(empSD2);
+            //        //        Employee = db.Employees.Where(e => e.EmployeeId == 2).FirstOrDefault()
+            //        //    };
+            //        //    empSD2.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
+            //        //    db.EmployeeSubDivisions.Add(empSD2);
 
-                        EmployeeSubDivs empSD3 = new EmployeeSubDivs
-                        {
-                            Position = "программист",
-                            TransferDate = db.Employees.Where(e => e.EmployeeId == 3).FirstOrDefault().StartDateWork,
+            //        //    EmployeeSubDivs empSD3 = new EmployeeSubDivs
+            //        //    {
+            //        //        Position = "программист",
+            //        //        TransferDate = db.Employees.Where(e => e.EmployeeId == 3).FirstOrDefault().StartDateWork,
                             
-                            Employee = db.Employees.Where(e => e.EmployeeId == 3).FirstOrDefault()
-                        };
-                        empSD3.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
-                        db.EmployeeSubDivisions.Add(empSD3);
+            //        //        Employee = db.Employees.Where(e => e.EmployeeId == 3).FirstOrDefault()
+            //        //    };
+            //        //    empSD3.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
+            //        //    db.EmployeeSubDivisions.Add(empSD3);
 
-                        EmployeeSubDivs empSD4 = new EmployeeSubDivs
-                        {
-                            Position = "программист",
-                            TransferDate = db.Employees.Where(e => e.EmployeeId == 4).FirstOrDefault().StartDateWork,
+            //        //    EmployeeSubDivs empSD4 = new EmployeeSubDivs
+            //        //    {
+            //        //        Position = "программист",
+            //        //        TransferDate = db.Employees.Where(e => e.EmployeeId == 4).FirstOrDefault().StartDateWork,
                            
-                            Employee = db.Employees.Where(e => e.EmployeeId == 4).FirstOrDefault()
-                        };
-                        empSD4.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
-                        db.EmployeeSubDivisions.Add(empSD4);
+            //        //        Employee = db.Employees.Where(e => e.EmployeeId == 4).FirstOrDefault()
+            //        //    };
+            //        //    empSD4.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == 5).FirstOrDefault();
+            //        //    db.EmployeeSubDivisions.Add(empSD4);
 
 
 
-                        //db.Configuration.AutoDetectChangesEnabled = false;
-                        //db.Configuration.ValidateOnSaveEnabled = false;
-                        db.SaveChanges();
-                    }
-                }
-                catch (ArgumentNullException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (OverflowException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.SqlClient.SqlException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                catch (System.Data.Entity.Core.EntityException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            //        //    //db.Configuration.AutoDetectChangesEnabled = false;
+            //        //    //db.Configuration.ValidateOnSaveEnabled = false;
+            //        //    db.SaveChanges();
+            //        //}
+            //    }
+            //    catch (ArgumentNullException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (OverflowException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.SqlClient.SqlException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.Entity.Core.EntityCommandExecutionException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //    catch (System.Data.Entity.Core.EntityException ex)
+            //    {
+            //        MessageBox.Show(ex.Message);
+            //    }
+            //}
         }
 
 
@@ -383,14 +383,14 @@ namespace TestApp
             {
                 try
                 {
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Columns.Clear();
-                    dataGridView1.Refresh();
-                    List<Employee> empList = db.Employees.Where(e => e.SubDivision.SubDivisionId == Id).ToList();
-                    var source = new BindingSource(empList,null);
-                    dataGridView1.DataSource = source;
-                    DataGreedViewUpdate(empList);                    
-                    dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    //dataGridView1.Rows.Clear();
+                    //dataGridView1.Columns.Clear();
+                    //dataGridView1.Refresh();
+                    //List<Employee> empList = db.Employees.Where(e => e.SubDivision.SubDivisionId == Id).ToList();
+                    //var source = new BindingSource(empList,null);
+                    //dataGridView1.DataSource = source;
+                    //DataGreedViewUpdate(empList);                    
+                    //dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
                 }
                 catch (ArgumentNullException ex)
@@ -418,50 +418,50 @@ namespace TestApp
 
         private void DataGreedViewUpdate(List<Employee> empList)
         {
-            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "пол", Name = "пол", CellTemplate = new DataGridViewTextBoxCell() });
-            int i = 0;
-            foreach (Employee emp in empList)
-            {
-                if (emp.sex)
-                    dataGridView1["пол", i].Value = "муж";
-                else
-                    dataGridView1["пол", i].Value = "жен";
-                i++;
-            }
-            i = 0;
-            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "Дата увольнения", Name = "FireDate2", CellTemplate = new DataGridViewTextBoxCell() });
-            foreach (Employee emp in empList)
-            {
-                if (emp.FireDate == new DateTime(2050, 1, 1))
-                    dataGridView1["FireDate2", i].Value = "работает";
-                else
-                    dataGridView1["FireDate2", i].Value = emp.FireDate.ToString();
-                i++;
-            }
-            dataGridView1.Columns["EmployeeId"].Visible = false;
-            dataGridView1.Columns["SubDivision"].Visible = false;
-            dataGridView1.Columns["sex"].Visible = false;
-            dataGridView1.Columns["FireDate"].Visible = false;
+            //dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "пол", Name = "пол", CellTemplate = new DataGridViewTextBoxCell() });
+            //int i = 0;
+            //foreach (Employee emp in empList)
+            //{
+            //    if (emp.sex)
+            //        dataGridView1["пол", i].Value = "муж";
+            //    else
+            //        dataGridView1["пол", i].Value = "жен";
+            //    i++;
+            //}
+            //i = 0;
+            //dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "Дата увольнения", Name = "FireDate2", CellTemplate = new DataGridViewTextBoxCell() });
+            //foreach (Employee emp in empList)
+            //{
+            //    if (emp.FireDate == new DateTime(2050, 1, 1))
+            //        dataGridView1["FireDate2", i].Value = "работает";
+            //    else
+            //        dataGridView1["FireDate2", i].Value = emp.FireDate.ToString();
+            //    i++;
+            //}
+            //dataGridView1.Columns["EmployeeId"].Visible = false;
+            //dataGridView1.Columns["SubDivision"].Visible = false;
+            //dataGridView1.Columns["sex"].Visible = false;
+            //dataGridView1.Columns["FireDate"].Visible = false;
 
-            dataGridView1.Columns["TabNumber"].DisplayIndex = 5;
-            dataGridView1.Columns["EmpName"].DisplayIndex = 2;
-            dataGridView1.Columns["EmpSurname"].DisplayIndex = 1;
-            dataGridView1.Columns["EmpPatronimic"].DisplayIndex = 3;
-            dataGridView1.Columns["FireDate2"].DisplayIndex = 10;
-            dataGridView1.Columns["пол"].DisplayIndex = 4;
+            //dataGridView1.Columns["TabNumber"].DisplayIndex = 5;
+            //dataGridView1.Columns["EmpName"].DisplayIndex = 2;
+            //dataGridView1.Columns["EmpSurname"].DisplayIndex = 1;
+            //dataGridView1.Columns["EmpPatronimic"].DisplayIndex = 3;
+            //dataGridView1.Columns["FireDate2"].DisplayIndex = 10;
+            //dataGridView1.Columns["пол"].DisplayIndex = 4;
 
-            dataGridView1.Columns["DateBirth"].DefaultCellStyle.Format = "MM/dd/yyyy";
-            dataGridView1.Columns["StartDateWork"].DefaultCellStyle.Format = "MM/dd/yyyy";
+            //dataGridView1.Columns["DateBirth"].DefaultCellStyle.Format = "MM/dd/yyyy";
+            //dataGridView1.Columns["StartDateWork"].DefaultCellStyle.Format = "MM/dd/yyyy";
 
-            dataGridView1.Columns["TabNumber"].HeaderText = "Табельный номер";
-            dataGridView1.Columns["EmpName"].HeaderText = "Имя";
-            dataGridView1.Columns["EmpSurName"].HeaderText = "Фамилия";
-            dataGridView1.Columns["EmpPatronimic"].HeaderText = "Отчество";
-            dataGridView1.Columns["DateBirth"].HeaderText = "Дата рождения";
-            dataGridView1.Columns["BirthPlace"].HeaderText = "Место рождения";
-            dataGridView1.Columns["INN"].HeaderText = "ИНН";
-            dataGridView1.Columns["StartDateWork"].HeaderText = "Дата начала работы";
-            dataGridView1.Columns["FireReason"].HeaderText = "Причина увольнения";
+            //dataGridView1.Columns["TabNumber"].HeaderText = "Табельный номер";
+            //dataGridView1.Columns["EmpName"].HeaderText = "Имя";
+            //dataGridView1.Columns["EmpSurName"].HeaderText = "Фамилия";
+            //dataGridView1.Columns["EmpPatronimic"].HeaderText = "Отчество";
+            //dataGridView1.Columns["DateBirth"].HeaderText = "Дата рождения";
+            //dataGridView1.Columns["BirthPlace"].HeaderText = "Место рождения";
+            //dataGridView1.Columns["INN"].HeaderText = "ИНН";
+            //dataGridView1.Columns["StartDateWork"].HeaderText = "Дата начала работы";
+            //dataGridView1.Columns["FireReason"].HeaderText = "Причина увольнения";
         }
 
         //add new Employee btn

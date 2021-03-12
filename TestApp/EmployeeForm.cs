@@ -21,25 +21,25 @@ namespace TestApp
         {
             InitializeComponent();
 
-            SubDivRecords = new ObservableCollection<SubDivision>();
-            PreviosLoadData(subDivId);
-            SetDefaultControls();
-            this.Text = "Режим оформления нового сотрудника";
-            checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
-            comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
+            //SubDivRecords = new ObservableCollection<SubDivision>();
+            //PreviosLoadData(subDivId);
+            //SetDefaultControls();
+            //this.Text = "Режим оформления нового сотрудника";
+            //checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
+            //comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
         }
 
         //for edit imployee
         public EmployeeForm(int empId, int subDivId)
         {
             InitializeComponent();
-            editEmployee = true;
-            SubDivRecords = new ObservableCollection<SubDivision>();
-            PreviosLoadData(empId, subDivId);
-            SetDefaultControlsEditEmployee();
-            this.Text = "Режим редактирования данных по сотруднику";
-            checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
-            comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
+            //editEmployee = true;
+            //SubDivRecords = new ObservableCollection<SubDivision>();
+            //PreviosLoadData(empId, subDivId);
+            //SetDefaultControlsEditEmployee();
+            //this.Text = "Режим редактирования данных по сотруднику";
+            //checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
+            //comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
         }
         SubDivision SelectedSubDivision { get; set; }
         SubDivision TransferSubDivision { get; set; }
@@ -54,51 +54,51 @@ namespace TestApp
                 try
                 {
 
-                    if (editEmployee)
-                        SelectedEmployee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
-                    //else
-                    //    db.Employees.Attach(SelectedEmployee);
+                    //        if (editEmployee)
+                    //            SelectedEmployee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
+                    //        //else
+                    //        //    db.Employees.Attach(SelectedEmployee);
 
-                    EmployeeSubDivs empSabDiv = new EmployeeSubDivs();
+                    //        EmployeeSubDivs empSabDiv = new EmployeeSubDivs();
 
-                    SelectedEmployee.EmpName = textBox_Name.Text;
-                    SelectedEmployee.EmpSurName = textBox_Surname.Text;
-                    SelectedEmployee.EmpPatronimic = textBox_Patronimic.Text;
-                    if (radioButton_male.Checked)
-                        SelectedEmployee.sex = true;
-                    if (radioButton_female.Checked)
-                        SelectedEmployee.sex = false;
-                    SelectedEmployee.DateBirth = dateTimePicker_BirthDate.Value;
-                    SelectedEmployee.BirthPlace = richTextBox_BirthPlace.Text;
-                    SelectedEmployee.INN = textBox_INN.Text;                    
-                    SelectedEmployee.TabNumber = textBox_TabNumber.Text;
-                    SelectedEmployee.StartDateWork = dateTimePicker_StartDateWork.Value;
-                    if (checkBox_Fired.Checked)
-                    {
-                        SelectedEmployee.FireDate = dateTimePicker_FireDate.Value;
-                        SelectedEmployee.FireReason = richTextBox1.Text;
-                    }
-                    
-
-                    SelectedEmployee.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == SelectedSubDivision.SubDivisionId).FirstOrDefault();
-                    //db.Configuration.AutoDetectChangesEnabled = false;
-                    //db.Configuration.ValidateOnSaveEnabled = false;
-                    db.Employees.Add(SelectedEmployee);
-                  
-                    if (editEmployee)                
-                        db.Entry(SelectedEmployee).State = EntityState.Modified;                       
-                    else                     
-                        db.Employees.Add(SelectedEmployee);
+                    //        SelectedEmployee.EmpName = textBox_Name.Text;
+                    //        SelectedEmployee.EmpSurName = textBox_Surname.Text;
+                    //        SelectedEmployee.EmpPatronimic = textBox_Patronimic.Text;
+                    //        if (radioButton_male.Checked)
+                    //            SelectedEmployee.sex = true;
+                    //        if (radioButton_female.Checked)
+                    //            SelectedEmployee.sex = false;
+                    //        SelectedEmployee.DateBirth = dateTimePicker_BirthDate.Value;
+                    //        SelectedEmployee.BirthPlace = richTextBox_BirthPlace.Text;
+                    //        SelectedEmployee.INN = textBox_INN.Text;                    
+                    //        SelectedEmployee.TabNumber = textBox_TabNumber.Text;
+                    //        SelectedEmployee.StartDateWork = dateTimePicker_StartDateWork.Value;
+                    //        if (checkBox_Fired.Checked)
+                    //        {
+                    //            SelectedEmployee.FireDate = dateTimePicker_FireDate.Value;
+                    //            SelectedEmployee.FireReason = richTextBox1.Text;
+                    //        }
 
 
-                    empSabDiv.SubDivision = SelectedSubDivision;
-                    empSabDiv.Position = textBox_EmpPosition.Text;
-                    empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;                    
-                    empSabDiv.Employee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
-                    db.EmployeeSubDivisions.Add(empSabDiv);
+                    //        SelectedEmployee.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == SelectedSubDivision.SubDivisionId).FirstOrDefault();
+                    //        //db.Configuration.AutoDetectChangesEnabled = false;
+                    //        //db.Configuration.ValidateOnSaveEnabled = false;
+                    //        db.Employees.Add(SelectedEmployee);
 
-                    db.SaveChanges();
-                    MessageBox.Show("Данные сохранены");
+                    //        if (editEmployee)                
+                    //            db.Entry(SelectedEmployee).State = EntityState.Modified;                       
+                    //        else                     
+                    //            db.Employees.Add(SelectedEmployee);
+
+
+                    //        empSabDiv.SubDivision = SelectedSubDivision;
+                    //        empSabDiv.Position = textBox_EmpPosition.Text;
+                    //        empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;                    
+                    //        empSabDiv.Employee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
+                    //        db.EmployeeSubDivisions.Add(empSabDiv);
+
+                    //        db.SaveChanges();
+                    //        MessageBox.Show("Данные сохранены");
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -236,41 +236,41 @@ namespace TestApp
         //for edit employee data
         private void SetDefaultControlsEditEmployee()
         {
-            textBox_Surname.Text = SelectedEmployee.EmpSurName;
-            textBox_Name.Text = SelectedEmployee.EmpName;
-            textBox_Patronimic.Text = SelectedEmployee.EmpPatronimic;
-            textBox_TabNumber.Text = SelectedEmployee.TabNumber;
-            if (SelectedEmployee.sex)
-                radioButton_male.Checked = true;
-            else
-                radioButton_female.Checked = true;
-            dateTimePicker_BirthDate.Value = SelectedEmployee.DateBirth;
-            textBox_INN.Text = SelectedEmployee.INN;
-            dateTimePicker_StartDateWork.Value = SelectedEmployee.StartDateWork;
+            //textBox_Surname.Text = SelectedEmployee.EmpSurName;
+            //textBox_Name.Text = SelectedEmployee.EmpName;
+            //textBox_Patronimic.Text = SelectedEmployee.EmpPatronimic;
+            //textBox_TabNumber.Text = SelectedEmployee.TabNumber;
+            //if (SelectedEmployee.sex)
+            //    radioButton_male.Checked = true;
+            //else
+            //    radioButton_female.Checked = true;
+            //dateTimePicker_BirthDate.Value = SelectedEmployee.DateBirth;
+            //textBox_INN.Text = SelectedEmployee.INN;
+            //dateTimePicker_StartDateWork.Value = SelectedEmployee.StartDateWork;
 
-            if (SelectedEmployee.FireDate == new DateTime(2050, 1, 1))
-            {
-                dateTimePicker_FireDate.Enabled = false;
-                richTextBox1.Enabled = false;
-            }
-            else
-            {
-                dateTimePicker_FireDate.Value = SelectedEmployee.FireDate;
-                richTextBox1.Enabled = true;
-                richTextBox1.Text = SelectedEmployee.FireReason;
-                checkBox_Fired.Checked = true;
-            }
+            //if (SelectedEmployee.FireDate == new DateTime(2050, 1, 1))
+            //{
+            //    dateTimePicker_FireDate.Enabled = false;
+            //    richTextBox1.Enabled = false;
+            //}
+            //else
+            //{
+            //    dateTimePicker_FireDate.Value = SelectedEmployee.FireDate;
+            //    richTextBox1.Enabled = true;
+            //    richTextBox1.Text = SelectedEmployee.FireReason;
+            //    checkBox_Fired.Checked = true;
+            //}
 
-            richTextBox_BirthPlace.Text = SelectedEmployee.BirthPlace;
-            textBox_EmpPosition.Text = GetEmployeePosition(SelectedEmployee.EmployeeId);
+            //richTextBox_BirthPlace.Text = SelectedEmployee.BirthPlace;
+            //textBox_EmpPosition.Text = GetEmployeePosition(SelectedEmployee.EmployeeId);
 
-            SubDivRecords = new ObservableCollection<SubDivision>(SubDivRecords.OrderBy(e => e.SubDivName));
-            comboBox_SubDivisionsList.DataSource = null;
-            comboBox_SubDivisionsList.DataSource = SubDivRecords;
-            SelectedSubDivision = TransferSubDivision;
-            comboBox_SubDivisionsList.DisplayMember = "SubDivName";
-            comboBox_SubDivisionsList.ValueMember = "SubDivisionId";
-            comboBox_SubDivisionsList.SelectedItem = SelectedSubDivision;
+            //SubDivRecords = new ObservableCollection<SubDivision>(SubDivRecords.OrderBy(e => e.SubDivName));
+            //comboBox_SubDivisionsList.DataSource = null;
+            //comboBox_SubDivisionsList.DataSource = SubDivRecords;
+            //SelectedSubDivision = TransferSubDivision;
+            //comboBox_SubDivisionsList.DisplayMember = "SubDivName";
+            //comboBox_SubDivisionsList.ValueMember = "SubDivisionId";
+            //comboBox_SubDivisionsList.SelectedItem = SelectedSubDivision;
         }
 
         private string GetEmployeePosition(int empId)
@@ -338,18 +338,18 @@ namespace TestApp
                 try
                 {
                  
-                    dataGridView1.Rows.Clear();
-                    dataGridView1.Columns.Clear();
-                    dataGridView1.Refresh();
-                    List<EmployeeSubDivs> list = db.EmployeeSubDivisions.Where(e => e.Employee.EmployeeId == empId).ToList();
-                    foreach (var item in list)
-                    {
-                        item.SubDivName = db.SubDivisions.Where(e => e.SubDivisionId == item.SubDivision.SubDivisionId).FirstOrDefault().SubDivName;
-                    }
-                    var source = new BindingSource(list, null);
-                    dataGridView1.DataSource = source;
-                    DataGreedViewUpdate(list);
-                    dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    //dataGridView1.Rows.Clear();
+                    //dataGridView1.Columns.Clear();
+                    //dataGridView1.Refresh();
+                    //List<EmployeeSubDivs> list = db.EmployeeSubDivisions.Where(e => e.Employee.EmployeeId == empId).ToList();
+                    //foreach (var item in list)
+                    //{
+                    //    item.SubDivName = db.SubDivisions.Where(e => e.SubDivisionId == item.SubDivision.SubDivisionId).FirstOrDefault().SubDivName;
+                    //}
+                    //var source = new BindingSource(list, null);
+                    //dataGridView1.DataSource = source;
+                    //DataGreedViewUpdate(list);
+                    //dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
                 }
                 catch (ArgumentNullException ex)

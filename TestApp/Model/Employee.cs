@@ -17,7 +17,7 @@ namespace TestApp.Model
             this.EmpName = "";
             this.EmpSurName = "";
             this.EmpPatronimic = "";
-            this.sex = true;//true - men, false - woomen            
+            this.Sex = true;//true - men, false - woomen            
             this.DateBirth = DateTime.Now;
             this.BirthPlace = "";
             this.INN = "";
@@ -25,7 +25,7 @@ namespace TestApp.Model
             this.FireDate = new DateTime(2050, 1, 1);
             this.FireReason = "";
 
-            this.EmployeeSubDivisions = new ObservableCollection<EmployeeSubDivs>();
+            this.EmployeeSubDivisions = new HashSet<EmployeeSubDivs>();
         }
         [Key]
     
@@ -47,7 +47,7 @@ namespace TestApp.Model
         [MaxLength(50)]
         public string EmpPatronimic { get; set; }
 
-        public bool sex { get; set; }
+        public bool Sex { get; set; }
         
 
         [Column(TypeName = "datetime2")]
@@ -72,8 +72,8 @@ namespace TestApp.Model
         [MaxLength(500)]
         public string FireReason { get; set; }
 
-        
-        public virtual SubDivision SubDivision { get; set; }
-        public virtual ObservableCollection<EmployeeSubDivs> EmployeeSubDivisions { get; set; }
+     
+      
+        public virtual ICollection<EmployeeSubDivs> EmployeeSubDivisions { get; set; }
     }
 }

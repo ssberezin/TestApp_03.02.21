@@ -141,6 +141,7 @@ namespace TestApp
                 {                  
 
                    var list = db.SubDivisions.ToList<SubDivision>();
+                    
                     foreach (var item in list)
                     {
                         DivRecords.Add(
