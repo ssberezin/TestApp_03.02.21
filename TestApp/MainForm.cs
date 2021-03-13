@@ -51,11 +51,9 @@ namespace TestApp
             using (DBConteiner db = new DBConteiner())
             {
                 try
-                {
-                    SubDivRecords = db.SubDivisions.ToList();
-                    SubDivision tmp = db.SubDivisions.Where(e => e.SubDivisionId == 1).FirstOrDefault();
-                    SubDivRecords.Remove(tmp);
-                    PopulateTreeView(1, null);
+                {                    
+                    SubDivRecords = new List<SubDivision>( db.SubDivisions.ToList().OrderBy(e => e.SubDivName));                   
+                    PopulateTreeView(null, null);
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -299,7 +297,7 @@ namespace TestApp
 
         //has taken from here 
         //https://blogs.msmvps.com/deborahk/populating-a-treeview-control-from-a-list/
-        private void PopulateTreeView(int parentId, TreeNode parentNode)
+        private void PopulateTreeView(int? parentId, TreeNode parentNode)
         {
             var filteredItems = SubDivRecords.Where(item =>
                                         item.ParentIdent == parentId);
@@ -383,14 +381,14 @@ namespace TestApp
             {
                 try
                 {
-                    //dataGridView1.Rows.Clear();
-                    //dataGridView1.Columns.Clear();
-                    //dataGridView1.Refresh();
-                    //List<Employee> empList = db.Employees.Where(e => e.SubDivision.SubDivisionId == Id).ToList();
-                    //var source = new BindingSource(empList,null);
-                    //dataGridView1.DataSource = source;
-                    //DataGreedViewUpdate(empList);                    
-                    //dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Columns.Clear();
+                    dataGridView1.Refresh();
+                    List<Employee> empList = db.Employees.Where(e => e.EmployeeSubDivisions.Where(i=>i.SubDivisionId==Id).FirstOrDefault().SubDivisionId==Id).ToList();                    
+                    var source = new BindingSource(empList, null);
+                    dataGridView1.DataSource = source;
+                    DataGreedViewUpdate(empList);
+                    dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
                 }
                 catch (ArgumentNullException ex)
@@ -418,50 +416,51 @@ namespace TestApp
 
         private void DataGreedViewUpdate(List<Employee> empList)
         {
-            //dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "пол", Name = "пол", CellTemplate = new DataGridViewTextBoxCell() });
-            //int i = 0;
-            //foreach (Employee emp in empList)
-            //{
-            //    if (emp.sex)
-            //        dataGridView1["пол", i].Value = "муж";
-            //    else
-            //        dataGridView1["пол", i].Value = "жен";
-            //    i++;
-            //}
-            //i = 0;
-            //dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "Дата увольнения", Name = "FireDate2", CellTemplate = new DataGridViewTextBoxCell() });
-            //foreach (Employee emp in empList)
-            //{
-            //    if (emp.FireDate == new DateTime(2050, 1, 1))
-            //        dataGridView1["FireDate2", i].Value = "работает";
-            //    else
-            //        dataGridView1["FireDate2", i].Value = emp.FireDate.ToString();
-            //    i++;
-            //}
-            //dataGridView1.Columns["EmployeeId"].Visible = false;
-            //dataGridView1.Columns["SubDivision"].Visible = false;
-            //dataGridView1.Columns["sex"].Visible = false;
-            //dataGridView1.Columns["FireDate"].Visible = false;
+            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "пол", Name = "пол", CellTemplate = new DataGridViewTextBoxCell() });
+            int i = 0;
+            foreach (Employee emp in empList)
+            {
+                if (emp.Sex)
+                    dataGridView1["пол", i].Value = "муж";
+                else
+                    dataGridView1["пол", i].Value = "жен";
+                i++;
+            }
+            i = 0;
+            dataGridView1.Columns.Add(new DataGridViewColumn { HeaderText = "Дата увольнения", Name = "FireDate2", CellTemplate = new DataGridViewTextBoxCell() });
+            foreach (Employee emp in empList)
+            {
+                if (emp.FireDate == new DateTime(2050, 1, 1))
+                    dataGridView1["FireDate2", i].Value = "работает";
+                else
+                    dataGridView1["FireDate2", i].Value = emp.FireDate.ToString("MM/dd/yyyy");
+                i++;
+            }
+            dataGridView1.Columns["EmployeeId"].Visible = false;
+            dataGridView1.Columns["EmployeeSubDivisions"].Visible = false;
+            dataGridView1.Columns["Sex"].Visible = false;
+            dataGridView1.Columns["FireDate"].Visible = false;
 
-            //dataGridView1.Columns["TabNumber"].DisplayIndex = 5;
-            //dataGridView1.Columns["EmpName"].DisplayIndex = 2;
-            //dataGridView1.Columns["EmpSurname"].DisplayIndex = 1;
-            //dataGridView1.Columns["EmpPatronimic"].DisplayIndex = 3;
-            //dataGridView1.Columns["FireDate2"].DisplayIndex = 10;
-            //dataGridView1.Columns["пол"].DisplayIndex = 4;
+            dataGridView1.Columns["TabNumber"].DisplayIndex = 5;
+            dataGridView1.Columns["EmpName"].DisplayIndex = 2;
+            dataGridView1.Columns["EmpSurname"].DisplayIndex = 1;
+            dataGridView1.Columns["EmpPatronimic"].DisplayIndex = 3;
+            dataGridView1.Columns["FireDate2"].DisplayIndex = 10;
+            dataGridView1.Columns["пол"].DisplayIndex = 4;
 
             //dataGridView1.Columns["DateBirth"].DefaultCellStyle.Format = "MM/dd/yyyy";
-            //dataGridView1.Columns["StartDateWork"].DefaultCellStyle.Format = "MM/dd/yyyy";
+            dataGridView1.Columns["StartDateWork"].DefaultCellStyle.Format = "MM/dd/yyyy";
+            //dataGridView1.Columns["FireDate2"].DefaultCellStyle.Format = "MM/dd/yyyy";
 
-            //dataGridView1.Columns["TabNumber"].HeaderText = "Табельный номер";
-            //dataGridView1.Columns["EmpName"].HeaderText = "Имя";
-            //dataGridView1.Columns["EmpSurName"].HeaderText = "Фамилия";
-            //dataGridView1.Columns["EmpPatronimic"].HeaderText = "Отчество";
-            //dataGridView1.Columns["DateBirth"].HeaderText = "Дата рождения";
-            //dataGridView1.Columns["BirthPlace"].HeaderText = "Место рождения";
-            //dataGridView1.Columns["INN"].HeaderText = "ИНН";
-            //dataGridView1.Columns["StartDateWork"].HeaderText = "Дата начала работы";
-            //dataGridView1.Columns["FireReason"].HeaderText = "Причина увольнения";
+            dataGridView1.Columns["TabNumber"].HeaderText = "Табельный номер";
+            dataGridView1.Columns["EmpName"].HeaderText = "Имя";
+            dataGridView1.Columns["EmpSurName"].HeaderText = "Фамилия";
+            dataGridView1.Columns["EmpPatronimic"].HeaderText = "Отчество";
+            dataGridView1.Columns["DateBirth"].HeaderText = "Дата рождения";
+            dataGridView1.Columns["BirthPlace"].HeaderText = "Место рождения";
+            dataGridView1.Columns["INN"].HeaderText = "ИНН";
+            dataGridView1.Columns["StartDateWork"].HeaderText = "Дата начала работы";
+            dataGridView1.Columns["FireReason"].HeaderText = "Причина увольнения";
         }
 
         //add new Employee btn

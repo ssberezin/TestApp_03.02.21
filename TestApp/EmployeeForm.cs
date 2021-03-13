@@ -21,12 +21,12 @@ namespace TestApp
         {
             InitializeComponent();
 
-            //SubDivRecords = new ObservableCollection<SubDivision>();
-            //PreviosLoadData(subDivId);
-            //SetDefaultControls();
-            //this.Text = "Режим оформления нового сотрудника";
-            //checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
-            //comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
+            SubDivRecords = new ObservableCollection<SubDivision>();
+            PreviosLoadData(subDivId);
+            SetDefaultControls();
+            this.Text = "Режим оформления нового сотрудника";
+            checkBox_Fired.CheckedChanged += checkBox_Fired_CheckedChanged;
+            comboBox_SubDivisionsList.SelectedIndexChanged += comboBox_SubDivisionsList_SelectedIndexChanged;
         }
 
         //for edit imployee
@@ -53,52 +53,55 @@ namespace TestApp
             {
                 try
                 {
+                    EmployeeSubDivs empSabDiv = new EmployeeSubDivs();
+                    empSabDiv.SubDivision = SelectedSubDivision;
+                    empSabDiv.Position = textBox_EmpPosition.Text;
+                    empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;
+                    empSabDiv.Employee = SelectedEmployee;
 
-                    //        if (editEmployee)
-                    //            SelectedEmployee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
-                    //        //else
-                    //        //    db.Employees.Attach(SelectedEmployee);
+                    db.EmployeeSubDivisions.Add(empSabDiv);
 
-                    //        EmployeeSubDivs empSabDiv = new EmployeeSubDivs();
-
-                    //        SelectedEmployee.EmpName = textBox_Name.Text;
-                    //        SelectedEmployee.EmpSurName = textBox_Surname.Text;
-                    //        SelectedEmployee.EmpPatronimic = textBox_Patronimic.Text;
-                    //        if (radioButton_male.Checked)
-                    //            SelectedEmployee.sex = true;
-                    //        if (radioButton_female.Checked)
-                    //            SelectedEmployee.sex = false;
-                    //        SelectedEmployee.DateBirth = dateTimePicker_BirthDate.Value;
-                    //        SelectedEmployee.BirthPlace = richTextBox_BirthPlace.Text;
-                    //        SelectedEmployee.INN = textBox_INN.Text;                    
-                    //        SelectedEmployee.TabNumber = textBox_TabNumber.Text;
-                    //        SelectedEmployee.StartDateWork = dateTimePicker_StartDateWork.Value;
-                    //        if (checkBox_Fired.Checked)
-                    //        {
-                    //            SelectedEmployee.FireDate = dateTimePicker_FireDate.Value;
-                    //            SelectedEmployee.FireReason = richTextBox1.Text;
-                    //        }
+                    db.SaveChanges();
 
 
-                    //        SelectedEmployee.SubDivision = db.SubDivisions.Where(e => e.SubDivisionId == SelectedSubDivision.SubDivisionId).FirstOrDefault();
-                    //        //db.Configuration.AutoDetectChangesEnabled = false;
-                    //        //db.Configuration.ValidateOnSaveEnabled = false;
-                    //        db.Employees.Add(SelectedEmployee);
+                    if (editEmployee)
+                        SelectedEmployee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
+                    //else
+                    //    db.Employees.Attach(SelectedEmployee);
 
-                    //        if (editEmployee)                
-                    //            db.Entry(SelectedEmployee).State = EntityState.Modified;                       
-                    //        else                     
-                    //            db.Employees.Add(SelectedEmployee);
+                   
+
+                    SelectedEmployee.EmpName = textBox_Name.Text;
+                    SelectedEmployee.EmpSurName = textBox_Surname.Text;
+                    SelectedEmployee.EmpPatronimic = textBox_Patronimic.Text;
+                    if (radioButton_male.Checked)
+                        SelectedEmployee.Sex = true;
+                    if (radioButton_female.Checked)
+                        SelectedEmployee.Sex = false;
+                    SelectedEmployee.DateBirth = dateTimePicker_BirthDate.Value;
+                    SelectedEmployee.BirthPlace = richTextBox_BirthPlace.Text;
+                    SelectedEmployee.INN = textBox_INN.Text;
+                    SelectedEmployee.TabNumber = textBox_TabNumber.Text;
+                    SelectedEmployee.StartDateWork = dateTimePicker_StartDateWork.Value;
+                    if (checkBox_Fired.Checked)
+                    {
+                        SelectedEmployee.FireDate = dateTimePicker_FireDate.Value;
+                        SelectedEmployee.FireReason = richTextBox1.Text;
+                    }
+                    SelectedEmployee.EmployeeSubDivisions.Add(empSabDiv);
+
+                    db.Configuration.AutoDetectChangesEnabled = false;
+                    db.Configuration.ValidateOnSaveEnabled = false;
 
 
-                    //        empSabDiv.SubDivision = SelectedSubDivision;
-                    //        empSabDiv.Position = textBox_EmpPosition.Text;
-                    //        empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;                    
-                    //        empSabDiv.Employee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
-                    //        db.EmployeeSubDivisions.Add(empSabDiv);
+                    if (editEmployee)
+                        db.Entry(SelectedEmployee).State = EntityState.Modified;
+                    else
+                        db.Employees.Add(SelectedEmployee);
+                    db.SaveChanges();
 
-                    //        db.SaveChanges();
-                    //        MessageBox.Show("Данные сохранены");
+                   
+                    MessageBox.Show("Данные сохранены");
                 }
                 catch (ArgumentNullException ex)
                 {
@@ -140,15 +143,14 @@ namespace TestApp
                     // DivRecords = new ObservableCollection<SubDivision>(DivRecords.OrderBy(e => e.SubDivName));
                     var list = db.SubDivisions.ToList<SubDivision>();
                     foreach (var item in list)
-                    {
-                        if (item.SubDivisionId == 1)
-                            continue;
+                    {                     
                         SubDivRecords.Add(
                         new SubDivision
                         {
                             SubDivisionId = item.SubDivisionId,
                             SubDivName = item.SubDivName,
                             ParentIdent = item.ParentIdent,
+                            ParentSubdiv = item.ParentSubdiv,
                             CollapsDate = item.CollapsDate,
                             CreateDate = item.CreateDate
                         });
@@ -231,6 +233,7 @@ namespace TestApp
             comboBox_SubDivisionsList.DisplayMember = "SubDivName";
             comboBox_SubDivisionsList.ValueMember = "SubDivisionId";
             comboBox_SubDivisionsList.SelectedItem = SelectedSubDivision;
+            comboBox_SubDivisionsList.SelectedItem = SubDivRecords.Where(e => e.SubDivisionId == TransferSubDivision.SubDivisionId).FirstOrDefault();
         }
 
         //for edit employee data

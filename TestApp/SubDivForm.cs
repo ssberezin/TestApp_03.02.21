@@ -48,7 +48,8 @@ namespace TestApp
         public SubDivision SelectedSubDivivsion { get; set; }
         public SubDivision NewdSubDivivsion { get; set; }
         public bool newSubDivSet = true,
-                    subDivClosed=false;
+                    subDivClosed = false,
+                    editSave = false;
 
         private void SubDivForm_Load(object sender, EventArgs e)
         {         
@@ -65,6 +66,13 @@ namespace TestApp
             
             ParentSubDiv_comboBox.DisplayMember = "SubDivName";
             ParentSubDiv_comboBox.ValueMember = "SubDivisionId";
+            if (newSubDivSet)
+                ParentSubDiv_comboBox.SelectedItem = null;
+            else       
+                ParentSubDiv_comboBox.SelectedItem = DivRecords.Where(e => e.SubDivisionId == NewdSubDivivsion.ParentIdent).FirstOrDefault();
+                
+            
+
             if (NewdSubDivivsion.WorkStatus)
                 dateTimePicker2.Visible = false;
 
@@ -86,9 +94,7 @@ namespace TestApp
                 label4.Text = "Не работает";
                 label4.ForeColor = Color.Red;
                 label4.Font = new Font(label4.Font, label4.Font.Style | FontStyle.Bold);
-            }
-
-            ParentSubDiv_comboBox.SelectedItem = DivRecords.Where(e => e.SubDivisionId == SelectedSubDivivsion.ParentIdent).FirstOrDefault();
+            }            
 
         }
 
@@ -99,8 +105,8 @@ namespace TestApp
             using (DBConteiner db = new DBConteiner())
             {
                 try
-                {
-                    SelectedSubDivivsion = db.SubDivisions.Where(e => e.SubDivisionId == subDiv.ParentIdent).FirstOrDefault();
+                {                   
+                    SelectedSubDivivsion = db.SubDivisions.Where(e => e.SubDivisionId == subDiv.SubDivisionId).FirstOrDefault();                   
                     ParentSubDiv_comboBox.SelectedItem = SelectedSubDivivsion;
                     dateTimePicker1.Value = subDiv.CreateDate;
                     checkBox1.Checked = false;
@@ -263,11 +269,13 @@ namespace TestApp
 
                         tmp.SubDivName = SubDivName_txtBox.Text;                        
                         tmp.ParentIdent = SelectedSubDivivsion.SubDivisionId;
+                        tmp.ParentSubdiv = db.SubDivisions.Where(e=>e.SubDivisionId==SelectedSubDivivsion.SubDivisionId).FirstOrDefault();
                         tmp.CreateDate = dateTimePicker1.Value;
                         tmp.CollapsDate = dateTimePicker2.Value;
 
                         db.SaveChanges();
-
+                        editSave = true;
+                        NewdSubDivivsion = SelectedSubDivivsion;
                         PreviosDataLoad();
                         SetDefaultControls();
                         MessageBox.Show("Данные о подразделении изменены");
