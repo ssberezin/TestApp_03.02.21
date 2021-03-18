@@ -338,6 +338,7 @@ namespace TestApp
         
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            
             int Id = (int)treeView1.SelectedNode.Tag;
             GetSelectedSubDiv(Id);
             GetEmployees(Id);
@@ -468,6 +469,7 @@ namespace TestApp
         {
             EmployeeForm addNewEmp = new EmployeeForm(SelectedSubDiv.SubDivisionId);
             addNewEmp.ShowDialog();
+            PreviosDataLoad();
         }
 
         private void EmployeeEditBtn_Click(object sender, EventArgs e)

@@ -53,16 +53,8 @@ namespace TestApp
             {
                 try
                 {
-                    EmployeeSubDivs empSabDiv = new EmployeeSubDivs();
-                    empSabDiv.SubDivision = SelectedSubDivision;
-                    empSabDiv.Position = textBox_EmpPosition.Text;
-                    empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;
-                    empSabDiv.Employee = SelectedEmployee;
 
-                    db.EmployeeSubDivisions.Add(empSabDiv);
-
-                    db.SaveChanges();
-
+                   // db.Entry(TransferSubDivision).State = EntityState.Modified;
 
                     if (editEmployee)
                         SelectedEmployee = db.Employees.Where(e => e.EmployeeId == SelectedEmployee.EmployeeId).FirstOrDefault();
@@ -88,19 +80,41 @@ namespace TestApp
                         SelectedEmployee.FireDate = dateTimePicker_FireDate.Value;
                         SelectedEmployee.FireReason = richTextBox1.Text;
                     }
-                    SelectedEmployee.EmployeeSubDivisions.Add(empSabDiv);
 
-                    db.Configuration.AutoDetectChangesEnabled = false;
-                    db.Configuration.ValidateOnSaveEnabled = false;
+                   
+
+
+                    //кастыли, которые не также не работают, но если их применить, то получаем 
+                    //дублирование название подразделения в БД. Что говорит о том, что нужно как-то умудриться
+                    //подифицировать это подразделение.. Пока - хз как. Т.к. связ подразделения и сотрудника у нас 
+                    //посрдедством n - n, и с какого-то хера из подразделения не видно сотрудника, хотя и все 
+                    //нужные поля  - публичные . жопа кароч
+                    //db.Configuration.AutoDetectChangesEnabled = false;
+                    //db.Configuration.ValidateOnSaveEnabled = false;
 
 
                     if (editEmployee)
                         db.Entry(SelectedEmployee).State = EntityState.Modified;
                     else
+                    
+                       
                         db.Employees.Add(SelectedEmployee);
+                    
+
+
                     db.SaveChanges();
 
-                   
+                    EmployeeSubDivs empSabDiv = new EmployeeSubDivs();
+                    empSabDiv.Employee = SelectedEmployee;
+                    empSabDiv.SubDivision = TransferSubDivision;
+                    empSabDiv.Position = textBox_EmpPosition.Text;
+                    empSabDiv.TransferDate = dateTimePicker_StartDateWork.Value;
+                    
+
+                    db.EmployeeSubDivisions.Add(empSabDiv);
+
+                     db.SaveChanges();
+
                     MessageBox.Show("Данные сохранены");
                 }
                 catch (ArgumentNullException ex)
@@ -223,9 +237,26 @@ namespace TestApp
         private void SetDefaultControls()
         {
 
-            dateTimePicker_FireDate.Enabled = false;
-            richTextBox1.Enabled = false;
+
+
+           textBox_Name.Text = "Иван";
+           textBox_Surname.Text = "Петров";
+            textBox_Patronimic.Text = "Григорьевич";            
+                SelectedEmployee.Sex = true;
+
+            dateTimePicker_BirthDate.Value = new DateTime(1984, 1, 1);
+            richTextBox_BirthPlace.Text = "Украина, г.Киев";
+            textBox_INN.Text= "3087302994" ;
             textBox_TabNumber.Text = TabNumberFill();
+            dateTimePicker_StartDateWork.Value = DateTime.Now;
+            textBox_EmpPosition.Text = "горе-программист";
+            checkBox_Fired.Checked = false;
+           
+
+
+            dateTimePicker_FireDate.Enabled = false;
+           richTextBox1.Enabled = false;
+            //textBox_TabNumber.Text = TabNumberFill();
 
             SubDivRecords = new ObservableCollection<SubDivision>(SubDivRecords.OrderBy(e => e.SubDivName));
             comboBox_SubDivisionsList.DataSource = null;
